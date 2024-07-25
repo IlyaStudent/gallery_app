@@ -2,9 +2,27 @@ part of '../ui_library.dart';
 
 class NavBarConsts {
   static const List<BottomNavigationBarItem> navBarItems = [
-    BottomNavigationBarItem(icon: IconConsts.homeIcon, label: "Home"),
-    BottomNavigationBarItem(icon: IconConsts.cameraIcon, label: "Camera"),
-    BottomNavigationBarItem(icon: IconConsts.profileIcon, label: "Profile"),
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.home,
+        size: 24,
+      ),
+      label: "Home",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.camera_alt,
+        size: 24,
+      ),
+      label: "Camera",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.account_circle,
+        size: 24,
+      ),
+      label: "Profile",
+    ),
   ];
 
   static const IconThemeData selectedIconThemeData =

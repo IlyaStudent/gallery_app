@@ -30,7 +30,7 @@ class CustomCheckBox extends StatelessWidget {
         ),
         Text(
           text,
-          style: AppFontsStyles.paragraph,
+          style: Theme.of(context).textTheme.labelMedium,
         )
       ],
     );

@@ -21,18 +21,22 @@ class CenterAlertDialog {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text(
+            child: Text(
               'Exit',
-              style: AppFontsStyles.blueText,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: AppColors.blue,
+                  ),
             ),
           ),
           CupertinoDialogAction(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text(
+            child: Text(
               'Confirm',
-              style: AppFontsStyles.blueText,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: AppColors.blue,
+                  ),
             ),
           ),
         ],

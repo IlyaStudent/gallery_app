@@ -14,40 +14,59 @@ class CustomSearchBar extends StatelessWidget {
       cursorColor: AppColors.black,
       controller: controller,
       decoration: InputDecoration(
-        contentPadding: PaddingConsts.inputPadding,
-        prefixIcon: IconConsts.searchIcon,
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 8,
+        ),
+        prefixIcon: const Icon(
+          Icons.search,
+          size: 24,
+          color: AppColors.iconColor,
+        ),
         suffixIcon: controller.text.isNotEmpty
             ? IconButton(
-                icon: IconConsts.cancelIcon,
+                icon: const Icon(
+                  Icons.cancel,
+                  size: 24,
+                  color: AppColors.iconColor,
+                ),
                 onPressed: () {
                   controller.clear();
                   (context as Element).markNeedsBuild();
                 },
               )
             : null,
-        hintStyle: AppFontsStyles.paragraph.copyWith(
-          color: isEnabled
-              ? AppColors.hintSearchColor
-              : AppColors.hintDisabledSearchColor,
-        ),
+        hintStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: isEnabled
+                  ? AppColors.hintSearchColor
+                  : AppColors.hintDisabledSearchColor,
+            ),
         hintText: 'Search',
         filled: true,
         fillColor: AppColors.greyLight,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderConsts.greyLightBorder,
+          borderSide: const BorderSide(
+            color: AppColors.greyLight,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderConsts.greyLightBorder,
+          borderSide: const BorderSide(
+            color: AppColors.greyLight,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderConsts.greyLightBorder,
+          borderSide: const BorderSide(
+            color: AppColors.greyLight,
+          ),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderConsts.greyLightBorder,
+          borderSide: const BorderSide(
+            color: AppColors.greyLight,
+          ),
         ),
       ),
       onChanged: (text) {

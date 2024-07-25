@@ -1,32 +1,43 @@
 part of '../ui_library.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
-  CustomSearchDelegate()
+  CustomSearchDelegate(BuildContext context)
       : super(
           searchFieldLabel: "Search",
           searchFieldDecorationTheme: InputDecorationTheme(
-            contentPadding: PaddingConsts.inputPadding,
-            hintStyle: AppFontsStyles.paragraph.copyWith(
-              color: AppColors.hintSearchColor,
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 8,
             ),
+            hintStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: AppColors.hintSearchColor,
+                ),
             filled: true,
-            labelStyle: AppFontsStyles.caption,
+            labelStyle: Theme.of(context).textTheme.bodySmall,
             fillColor: AppColors.greyLight,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderConsts.greyLightBorder,
+              borderSide: const BorderSide(
+                color: AppColors.greyLight,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderConsts.greyLightBorder,
+              borderSide: const BorderSide(
+                color: AppColors.greyLight,
+              ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderConsts.greyLightBorder,
+              borderSide: const BorderSide(
+                color: AppColors.greyLight,
+              ),
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderConsts.greyLightBorder,
+              borderSide: const BorderSide(
+                color: AppColors.greyLight,
+              ),
             ),
           ),
         );
@@ -36,7 +47,11 @@ class CustomSearchDelegate extends SearchDelegate {
     return [
       if (query.isNotEmpty)
         IconButton(
-          icon: IconConsts.cancelIcon,
+          icon: const Icon(
+            Icons.cancel,
+            size: 24,
+            color: AppColors.iconColor,
+          ),
           onPressed: () {
             query = '';
             showSuggestions(context);
@@ -54,13 +69,14 @@ class CustomSearchDelegate extends SearchDelegate {
         },
         child: Text(
           "Cancel",
-          style: AppFontsStyles.paragraph.copyWith(color: AppColors.blue),
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: AppColors.blue,
+              ),
         ),
       ),
     );
   }
 
-  @override
   @override
   Widget buildResults(BuildContext context) {
     return Center(

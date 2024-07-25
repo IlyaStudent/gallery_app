@@ -9,12 +9,19 @@ class LoaderWithLabel extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CircularIndicatorConsts.greyCircularIndicator,
+        const CustomLoader(
+          color: AppColors.grey,
+        ),
         Padding(
-          padding: PaddingConsts.padding16,
+          padding: const EdgeInsets.symmetric(
+            vertical: 9,
+            horizontal: 42,
+          ),
           child: Text(
             "Loading...",
-            style: AppFontsStyles.paragraph.copyWith(color: AppColors.grey),
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: AppColors.grey,
+                ),
           ),
         )
       ],

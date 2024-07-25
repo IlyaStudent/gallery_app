@@ -1,9 +1,9 @@
 part of '../ui_library.dart';
 
-class ArticleCacheImage extends StatelessWidget {
+class CustomCachedImage extends StatelessWidget {
   final String? imageUrl;
   final bool isBig;
-  const ArticleCacheImage({
+  const CustomCachedImage({
     super.key,
     required this.imageUrl,
     required this.isBig,
@@ -33,7 +33,7 @@ class ArticleCacheImage extends StatelessWidget {
         return _imageWidget(imageProvider);
       },
       placeholder: (context, url) {
-        return const Loader();
+        return const CustomLoader(color: AppColors.grey);
       },
       errorWidget: (context, url, error) {
         return _imageWidget(

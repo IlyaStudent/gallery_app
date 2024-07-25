@@ -1,7 +1,7 @@
 part of '../ui_library.dart';
 
 class CustomTextButton extends StatelessWidget {
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
   final String text;
   final bool isLoading;
   final bool isDisabled;
@@ -23,7 +23,11 @@ class CustomTextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        side: MaterialStateProperty.all<BorderSide>(BorderConsts.whiteBorder),
+        side: MaterialStateProperty.all<BorderSide>(
+          const BorderSide(
+            color: AppColors.white,
+          ),
+        ),
         overlayColor: MaterialStateProperty.all(AppColors.white),
         foregroundColor: isDisabled
             ? MaterialStateProperty.all(AppColors.grey)
@@ -34,12 +38,12 @@ class CustomTextButton extends StatelessWidget {
               ),
       ),
       child: Padding(
-        padding: PaddingConsts.buttonPadding,
+        padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 42),
         child: isLoading
-            ? CircularIndicatorConsts.blackCircularIndicator
+            ? const CustomLoader(color: AppColors.black)
             : Text(
                 text,
-                style: AppFontsStyles.paragraph,
+                style: Theme.of(context).textTheme.labelMedium,
               ),
       ),
     );

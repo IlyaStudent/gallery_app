@@ -15,7 +15,7 @@ class StatusBar extends StatelessWidget implements PreferredSizeWidget {
             InkWell(
               onTap: () => showSearch(
                 context: context,
-                delegate: CustomSearchDelegate(),
+                delegate: CustomSearchDelegate(context),
               ),
               child: CustomSearchBar(
                 controller: controller,

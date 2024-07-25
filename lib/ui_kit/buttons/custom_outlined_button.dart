@@ -1,7 +1,7 @@
 part of '../ui_library.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
   final String text;
   final bool isLoading;
   final bool isDisabled;
@@ -20,7 +20,9 @@ class CustomOutlinedButton extends StatelessWidget {
       style: ButtonStyle(
         side: isDisabled
             ? MaterialStateProperty.all<BorderSide>(
-                BorderConsts.greyLightBorder,
+                const BorderSide(
+                  color: AppColors.greyLight,
+                ),
               )
             : MaterialStateProperty.resolveWith<BorderSide>(
                 (states) => BorderSide(
@@ -44,12 +46,12 @@ class CustomOutlinedButton extends StatelessWidget {
               ),
       ),
       child: Padding(
-        padding: PaddingConsts.buttonPadding,
+        padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 42),
         child: isLoading
-            ? CircularIndicatorConsts.blackCircularIndicator
+            ? const CustomLoader(color: AppColors.black)
             : Text(
                 text,
-                style: AppFontsStyles.paragraph,
+                style: Theme.of(context).textTheme.labelMedium,
               ),
       ),
     );

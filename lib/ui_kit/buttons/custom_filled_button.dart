@@ -1,7 +1,7 @@
 part of '../ui_library.dart';
 
 class CustomFilledButton extends StatelessWidget {
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
   final String text;
   final bool isLoading;
   final bool isDisabled;
@@ -33,14 +33,14 @@ class CustomFilledButton extends StatelessWidget {
               ),
       ),
       child: Padding(
-        padding: PaddingConsts.buttonPadding,
+        padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 42),
         child: isLoading
-            ? CircularIndicatorConsts.whiteCircularIndicator
+            ? const CustomLoader(color: AppColors.white)
             : Text(
                 text,
-                style: AppFontsStyles.paragraph.copyWith(
-                  color: isDisabled ? AppColors.grey : AppColors.white,
-                ),
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: isDisabled ? AppColors.grey : AppColors.white,
+                    ),
               ),
       ),
     );
