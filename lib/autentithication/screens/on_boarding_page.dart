@@ -16,11 +16,11 @@ class OnBoardingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(AppImagesConsts.logo),
+              Image.asset(StringConsts.logoImage),
               Padding(
                 padding: const EdgeInsets.only(top: 36, bottom: 80),
                 child: Text(
-                  S.of(context).welcomeToGallery,
+                  context.localization.welcomeToGallery,
                   style: context.theme.textTheme.headlineLarge,
                 ),
               ),
@@ -29,7 +29,7 @@ class OnBoardingPage extends StatelessWidget {
                 child: CustomFilledButton(
                   onPressed: () =>
                       context.router.pushNamed(StringConsts.regPath),
-                  text: S.of(context).createAnAccount,
+                  text: context.localization.createAnAccount,
                   isLoading: false,
                   isDisabled: false,
                 ),
@@ -41,7 +41,7 @@ class OnBoardingPage extends StatelessWidget {
                   child: CustomOutlinedButton(
                     onPressed: () =>
                         context.router.pushNamed(StringConsts.authPath),
-                    text: S.of(context).iAlreadyHaveAnAccount,
+                    text: context.localization.iAlreadyHaveAnAccount,
                     isLoading: false,
                     isDisabled: false,
                   ),

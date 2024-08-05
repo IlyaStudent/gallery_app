@@ -13,8 +13,9 @@ class AuthPage extends StatefulWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthorizationBloc(
-        authentithicationRepository: sl<AuthentithicationRepository>(),
-        storage: sl<FlutterSecureStorage>(),
+        authentithicationRepository: instance(),
+        tokenSecureStorage: instance(),
+        storage: instance<FlutterSecureStorage>(),
       ),
       child: this,
     );
@@ -30,7 +31,9 @@ class _AuthPageState extends State<AuthPage> {
     return BlocListener<AuthorizationBloc, AuthorizationState>(
       listener: (context, state) {
         if (state is _AuthorizationAuthorizedState) {
-          context.router.replaceNamed(StringConsts.homePath);
+          context.router.replace(
+            const HomeRoute(),
+          );
         }
       },
       child: BlocBuilder<AuthorizationBloc, AuthorizationState>(
@@ -45,7 +48,7 @@ class _AuthPageState extends State<AuthPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       PageTitleWidget(
-                        text: S.of(context).signIn,
+                        text: context.localization.signIn,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 60),
@@ -64,13 +67,13 @@ class _AuthPageState extends State<AuthPage> {
                               textAlign: TextAlign.left,
                             ),
                             CustomTextField(
-                              hintText: S.of(context).email,
+                              hintText: context.localization.email,
                               suffixIcon: Icons.mail_outline,
                               enabled: state is! _AuthorizationLoadingState,
                               controller: _emailController,
                             ),
                             CustomPasswordField(
-                              hintText: S.of(context).password,
+                              hintText: context.localization.password,
                               enabled: state is! _AuthorizationLoadingState,
                               controller: _passwordController,
                             )
@@ -87,14 +90,15 @@ class _AuthPageState extends State<AuthPage> {
                               ),
                             ),
                           ),
-                        text: S.of(context).signIn,
+                        text: context.localization.signIn,
                         isLoading: false,
                         isDisabled: (state is _AuthorizationLoadingState),
                       ),
                       CustomTextButton(
-                        onPressed: () =>
-                            context.router.replaceNamed(StringConsts.regPath),
-                        text: S.of(context).signUp,
+                        onPressed: () => context.router.replace(
+                          const RegisterRoute(),
+                        ),
+                        text: context.localization.signUp,
                         isLoading: false,
                         isDisabled: (state is _AuthorizationLoadingState),
                       ),

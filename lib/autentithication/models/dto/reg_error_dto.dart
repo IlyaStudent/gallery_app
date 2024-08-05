@@ -1,8 +1,12 @@
 part of '../../autentithication_part.dart';
 
+// import 'package:freezed_annotation/freezed_annotation.dart';
+// part 'reg_error_dto.g.dart';
+// part 'reg_error_dto.freezed.dart';
+
 @freezed
-class RegErrorDTO with _$RegErrorDTO {
-  const factory RegErrorDTO({
+class RegistrationErrorDTO with _$RegErrorDTO {
+  const factory RegistrationErrorDTO({
     @Default(false) bool dataValid,
     String? displayName,
     String? birthday,
@@ -12,6 +16,6 @@ class RegErrorDTO with _$RegErrorDTO {
     String? regError,
   }) = _RegErrorDTO;
 
-  factory RegErrorDTO.fromJson(Map<String, dynamic> json) =>
+  factory RegistrationErrorDTO.fromJson(Map<String, dynamic> json) =>
       _$RegErrorDTOFromJson(json);
 }

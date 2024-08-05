@@ -9,11 +9,6 @@ part of '../../autentithication_part.dart';
 // FreezedGenerator
 // **************************************************************************
 
-T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$RegistrationEvent {
   @optionalTypeArgs
@@ -338,21 +333,25 @@ abstract class ChangeDataEvent implements RegistrationEvent {
 mixin _$RegistrationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RegErrorDTO regErrorDTO, RegDTO regDTO) checking,
+    required TResult Function(
+            RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)
+        checking,
     required TResult Function() regLoading,
     required TResult Function() regisetered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RegErrorDTO regErrorDTO, RegDTO regDTO)? checking,
+    TResult? Function(RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)?
+        checking,
     TResult? Function()? regLoading,
     TResult? Function()? regisetered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RegErrorDTO regErrorDTO, RegDTO regDTO)? checking,
+    TResult Function(RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)?
+        checking,
     TResult Function()? regLoading,
     TResult Function()? regisetered,
     required TResult orElse(),
@@ -406,7 +405,7 @@ abstract class _$$RegDataCheckingImplCopyWith<$Res> {
           $Res Function(_$RegDataCheckingImpl) then) =
       __$$RegDataCheckingImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RegErrorDTO regErrorDTO, RegDTO regDTO});
+  $Res call({RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO});
 }
 
 /// @nodoc
@@ -427,11 +426,11 @@ class __$$RegDataCheckingImplCopyWithImpl<$Res>
       regErrorDTO: null == regErrorDTO
           ? _value.regErrorDTO
           : regErrorDTO // ignore: cast_nullable_to_non_nullable
-              as RegErrorDTO,
+              as RegistrationErrorDTO,
       regDTO: null == regDTO
           ? _value.regDTO
           : regDTO // ignore: cast_nullable_to_non_nullable
-              as RegDTO,
+              as RegistrationDTO,
     ));
   }
 }
@@ -443,9 +442,9 @@ class _$RegDataCheckingImpl implements _RegDataChecking {
       {required this.regErrorDTO, required this.regDTO});
 
   @override
-  final RegErrorDTO regErrorDTO;
+  final RegistrationErrorDTO regErrorDTO;
   @override
-  final RegDTO regDTO;
+  final RegistrationDTO regDTO;
 
   @override
   String toString() {
@@ -475,7 +474,9 @@ class _$RegDataCheckingImpl implements _RegDataChecking {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RegErrorDTO regErrorDTO, RegDTO regDTO) checking,
+    required TResult Function(
+            RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)
+        checking,
     required TResult Function() regLoading,
     required TResult Function() regisetered,
   }) {
@@ -485,7 +486,8 @@ class _$RegDataCheckingImpl implements _RegDataChecking {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RegErrorDTO regErrorDTO, RegDTO regDTO)? checking,
+    TResult? Function(RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)?
+        checking,
     TResult? Function()? regLoading,
     TResult? Function()? regisetered,
   }) {
@@ -495,7 +497,8 @@ class _$RegDataCheckingImpl implements _RegDataChecking {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RegErrorDTO regErrorDTO, RegDTO regDTO)? checking,
+    TResult Function(RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)?
+        checking,
     TResult Function()? regLoading,
     TResult Function()? regisetered,
     required TResult orElse(),
@@ -543,11 +546,11 @@ class _$RegDataCheckingImpl implements _RegDataChecking {
 
 abstract class _RegDataChecking implements RegistrationState {
   const factory _RegDataChecking(
-      {required final RegErrorDTO regErrorDTO,
-      required final RegDTO regDTO}) = _$RegDataCheckingImpl;
+      {required final RegistrationErrorDTO regErrorDTO,
+      required final RegistrationDTO regDTO}) = _$RegDataCheckingImpl;
 
-  RegErrorDTO get regErrorDTO;
-  RegDTO get regDTO;
+  RegistrationErrorDTO get regErrorDTO;
+  RegistrationDTO get regDTO;
   @JsonKey(ignore: true)
   _$$RegDataCheckingImplCopyWith<_$RegDataCheckingImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -591,7 +594,9 @@ class _$RegLoadingStateImpl implements _RegLoadingState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RegErrorDTO regErrorDTO, RegDTO regDTO) checking,
+    required TResult Function(
+            RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)
+        checking,
     required TResult Function() regLoading,
     required TResult Function() regisetered,
   }) {
@@ -601,7 +606,8 @@ class _$RegLoadingStateImpl implements _RegLoadingState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RegErrorDTO regErrorDTO, RegDTO regDTO)? checking,
+    TResult? Function(RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)?
+        checking,
     TResult? Function()? regLoading,
     TResult? Function()? regisetered,
   }) {
@@ -611,7 +617,8 @@ class _$RegLoadingStateImpl implements _RegLoadingState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RegErrorDTO regErrorDTO, RegDTO regDTO)? checking,
+    TResult Function(RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)?
+        checking,
     TResult Function()? regLoading,
     TResult Function()? regisetered,
     required TResult orElse(),
@@ -699,7 +706,9 @@ class _$RegisteredStateImpl implements _RegisteredState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RegErrorDTO regErrorDTO, RegDTO regDTO) checking,
+    required TResult Function(
+            RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)
+        checking,
     required TResult Function() regLoading,
     required TResult Function() regisetered,
   }) {
@@ -709,7 +718,8 @@ class _$RegisteredStateImpl implements _RegisteredState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RegErrorDTO regErrorDTO, RegDTO regDTO)? checking,
+    TResult? Function(RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)?
+        checking,
     TResult? Function()? regLoading,
     TResult? Function()? regisetered,
   }) {
@@ -719,7 +729,8 @@ class _$RegisteredStateImpl implements _RegisteredState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RegErrorDTO regErrorDTO, RegDTO regDTO)? checking,
+    TResult Function(RegistrationErrorDTO regErrorDTO, RegistrationDTO regDTO)?
+        checking,
     TResult Function()? regLoading,
     TResult Function()? regisetered,
     required TResult orElse(),

@@ -10,7 +10,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider<RegistrationBloc>(
       create: (context) => RegistrationBloc(
-        authentithicationRepository: sl<AuthentithicationRepository>(),
+        authentithicationRepository: instance(),
       ),
       child: this,
     );
@@ -21,7 +21,9 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
     return BlocListener<RegistrationBloc, RegistrationState>(
       listener: (context, state) {
         if (state is _RegisteredState) {
-          context.router.replaceNamed(StringConsts.homePath);
+          context.router.replace(
+            const HomeRoute(),
+          );
         }
       },
       child: BlocBuilder<RegistrationBloc, RegistrationState>(
@@ -36,7 +38,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       PageTitleWidget(
-                        text: S.of(context).signUp,
+                        text: context.localization.signUp,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 60),
@@ -55,7 +57,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                               textAlign: TextAlign.left,
                             ),
                             CustomTextField(
-                              hintText: S.of(context).username,
+                              hintText: context.localization.username,
                               errorText: (state is _RegDataChecking)
                                   ? state.regErrorDTO.displayName
                                   : null,
@@ -71,7 +73,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                       ),
                             ),
                             CustomDateField(
-                              hintText: S.of(context).birthday,
+                              hintText: context.localization.birthday,
                               errorText: (state is _RegDataChecking)
                                   ? state.regErrorDTO.birthday
                                   : null,
@@ -86,7 +88,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                   ),
                             ),
                             CustomTextField(
-                                hintText: S.of(context).email,
+                                hintText: context.localization.email,
                                 errorText: (state is _RegDataChecking)
                                     ? state.regErrorDTO.email
                                     : null,
@@ -101,7 +103,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                       ),
                                     )),
                             CustomPasswordField(
-                              hintText: S.of(context).password,
+                              hintText: context.localization.password,
                               errorText: (state is _RegDataChecking)
                                   ? state.regErrorDTO.plainPassword
                                   : null,
@@ -116,7 +118,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                       ),
                             ),
                             CustomPasswordField(
-                              hintText: S.of(context).confirmPassword,
+                              hintText: context.localization.confirmPassword,
                               errorText: (state is _RegDataChecking)
                                   ? state.regErrorDTO.confirmPassword
                                   : null,
@@ -137,7 +139,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                         onPressed: () => context.read<RegistrationBloc>().add(
                               const RegisterEvent(),
                             ),
-                        text: S.of(context).signUp,
+                        text: context.localization.signUp,
                         isLoading: false,
                         isDisabled: (state is _RegDataChecking)
                             ? !state.regErrorDTO.dataValid
@@ -148,8 +150,8 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                       ),
                       CustomTextButton(
                         onPressed: () =>
-                            context.router.replaceNamed(StringConsts.authPath),
-                        text: S.of(context).signIn,
+                            context.router.replace(const AuthRoute()),
+                        text: context.localization.signIn,
                         isLoading: false,
                         isDisabled: (state is _RegLoadingState),
                       ),

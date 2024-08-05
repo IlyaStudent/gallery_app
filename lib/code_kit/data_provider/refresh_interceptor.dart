@@ -2,32 +2,44 @@ part of '../code_kit.dart';
 
 class RefreshInterceptor extends dio.Interceptor {
   final RefreshApi refreshApi;
+  final TokenSecureStorage tokenSecureStorage;
 
   final FlutterSecureStorage storage;
 
-  RefreshInterceptor({required this.storage, required this.refreshApi});
+  RefreshInterceptor({
+    required this.storage,
+    required this.refreshApi,
+    required this.tokenSecureStorage,
+  });
 
   @override
   void onRequest(
-      dio.RequestOptions options, dio.RequestInterceptorHandler handler) async {
-    final accessToken = await storage.read(key: "accessToken");
-    options.headers['Authorization'] = 'Bearer $accessToken';
+    dio.RequestOptions options,
+    dio.RequestInterceptorHandler handler,
+  ) async {
+    final TokenDTO tokenDTO = await tokenSecureStorage.getToken();
+    options.headers[StringConsts.authotization] =
+        '${StringConsts.bearer} ${tokenDTO.access_token}';
     return handler.next(options);
   }
 
   @override
   void onResponse(
-      dio.Response response, dio.ResponseInterceptorHandler handler) {
+    dio.Response response,
+    dio.ResponseInterceptorHandler handler,
+  ) {
     return handler.next(response);
   }
 
   @override
   void onError(
-      dio.DioException err, dio.ErrorInterceptorHandler handler) async {
+    dio.DioException err,
+    dio.ErrorInterceptorHandler handler,
+  ) async {
     if (err.response != null) {
       switch (err.response?.statusCode) {
         case 401:
-          if (await storage.containsKey(key: "refreshToken") &&
+          if (await storage.containsKey(key: StringConsts.refreshTokenKey) &&
               err.response != null) {
             await _refreshToken();
             return handler.resolve(err.response!);
@@ -40,15 +52,19 @@ class RefreshInterceptor extends dio.Interceptor {
   }
 
   Future<void> _refreshToken() async {
-    final refreshToken = await storage.read(key: "refreshToken");
+    final refreshToken = await storage.read(
+      key: StringConsts.refreshTokenKey,
+    );
     RefreshDTO refreshDTO = RefreshDTO(
-      refreshToken: refreshToken!,
+      refresh_token: refreshToken!,
     );
 
     try {
       final TokenDTO tokenModel = await refreshApi.refresh(refreshDTO);
-      await storage.write(key: "accessToken", value: tokenModel.accessToken);
-      await storage.write(key: "refreshToken", value: tokenModel.refreshToken);
+      tokenSecureStorage.writeToken(
+        tokenModel.access_token,
+        tokenModel.refresh_token,
+      );
     } catch (e) {
       await storage.deleteAll();
     }

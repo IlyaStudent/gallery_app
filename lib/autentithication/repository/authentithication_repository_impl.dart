@@ -10,7 +10,7 @@ class AuthentithicationRepositoryImpl implements AuthentithicationRepository {
   });
 
   @override
-  Future<void> registerUser(RegDTO regModel) async =>
+  Future<void> registerUser(RegistrationDTO regModel) async =>
       apiAuthorization.registerUser(regModel);
 
   @override

@@ -5,9 +5,9 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
 
   RegistrationBloc({required this.authentithicationRepository})
       : super(
-          RegistrationState.checking(
-            regDTO: const RegDTO(),
-            regErrorDTO: RegErrorDTO(),
+          const RegistrationState.checking(
+            regDTO: RegistrationDTO(),
+            regErrorDTO: RegistrationErrorDTO(),
           ),
         ) {
     on<RegisterEvent>(_onRegistrationEvent);
@@ -27,7 +27,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       } on dio.DioException catch (error) {
         emit(
           RegistrationState.checking(
-            regErrorDTO: RegErrorDTO(regError: error.message),
+            regErrorDTO: RegistrationErrorDTO(regError: error.message),
             regDTO: currentState.regDTO,
           ),
         );
@@ -47,8 +47,9 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         changedFieldName: event.changedFieldName,
         changedFieldText: event.changedFieldText,
       );
-      final RegDTO regDTO = validationHelper.changeUserData();
-      final RegErrorDTO regErrorDTO = validationHelper.changeErrorData();
+      final RegistrationDTO regDTO = validationHelper.changeUserData();
+      final RegistrationErrorDTO regErrorDTO =
+          validationHelper.changeErrorData();
 
       emit(
         RegistrationState.checking(

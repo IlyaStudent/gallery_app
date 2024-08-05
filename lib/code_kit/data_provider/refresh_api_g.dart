@@ -1,4 +1,12 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of '../code_kit.dart';
+
+// **************************************************************************
+// RetrofitGenerator
+// **************************************************************************
+
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _RefreshApi implements RefreshApi {
   _RefreshApi(
@@ -16,14 +24,18 @@ class _RefreshApi implements RefreshApi {
   Future<TokenDTO> refresh(RefreshDTO refreshDTO) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(refreshDTO.toJson());
+    final _headers = <String, dynamic>{
+      r'accept': 'application/ld+json',
+      r'Content-Type': 'application/ld+json',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    final _data = refreshDTO;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<TokenDTO>(dio.Options(
-      method: 'GET',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
+      contentType: 'application/ld+json',
     )
             .compose(
               _dio.options,

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gallery_app/generated/l10n.dart';
+import 'package:gallery_app/root/navigation/app_router.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -46,9 +46,6 @@ part 'models/dto/error_dto_freezed.dart';
 part 'models/dto/login_dto.dart';
 part 'models/dto/login_dto_g.dart';
 part 'models/dto/login_dto_freezed.dart';
-part 'models/dto/refresh_dto.dart';
-part 'models/dto/refresh_dto_g.dart';
-part 'models/dto/refresh_dto_freezed.dart';
 part 'models/dto/reg_dto.dart';
 part 'models/dto/reg_dto_g.dart';
 part 'models/dto/reg_dto_freezed.dart';

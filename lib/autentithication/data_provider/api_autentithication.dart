@@ -10,7 +10,7 @@ abstract class ApiAutentithication {
     StringConsts.accept: StringConsts.applicationIdJson,
     StringConsts.contentType: StringConsts.applicationIdJson,
   })
-  Future<void> registerUser(@Body() RegDTO user);
+  Future<void> registerUser(@Body() RegistrationDTO user);
 
   @POST(StringConsts.loginLink)
   Future<TokenDTO> loginUser(@Body() LoginDTO loginModel);

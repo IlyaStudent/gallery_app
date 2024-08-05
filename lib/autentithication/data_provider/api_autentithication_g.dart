@@ -13,10 +13,10 @@ class _ApiAutentithication implements ApiAutentithication {
   String? baseUrl;
 
   @override
-  Future<void> registerUser(RegDTO user) async {
+  Future<void> registerUser(RegistrationDTO user) async {
     _dio.interceptors.add(
       AuthenticationInterceptor(
-        networkInfo: sl<NetworkInfo>(),
+        networkInfo: instance<NetworkInfo>(),
       ),
     );
     const _extra = <String, dynamic>{};
@@ -58,7 +58,7 @@ class _ApiAutentithication implements ApiAutentithication {
   Future<TokenDTO> loginUser(LoginDTO loginModel) async {
     _dio.interceptors.add(
       AuthenticationInterceptor(
-        networkInfo: sl<NetworkInfo>(),
+        networkInfo: instance<NetworkInfo>(),
       ),
     );
     const _extra = <String, dynamic>{};

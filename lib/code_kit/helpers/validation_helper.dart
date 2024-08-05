@@ -1,8 +1,8 @@
 part of '../code_kit.dart';
 
 class ValidationHelper {
-  final RegDTO regDTO;
-  final RegErrorDTO regErrorDTO;
+  final RegistrationDTO regDTO;
+  final RegistrationErrorDTO regErrorDTO;
 
   final String changedFieldText;
   final String changedFieldName;
@@ -30,13 +30,13 @@ class ValidationHelper {
     StringConsts.confirmPassword: StringConsts.confirmPasswordError,
   };
 
-  RegDTO changeUserData() {
+  RegistrationDTO changeUserData() {
     final Map<String, dynamic> userData = regDTO.toJson();
     userData[changedFieldName] = changedFieldText;
-    return RegDTO.fromJson(userData);
+    return RegistrationDTO.fromJson(userData);
   }
 
-  RegErrorDTO changeErrorData() {
+  RegistrationErrorDTO changeErrorData() {
     final Map<String, dynamic> errorData = regErrorDTO.toJson();
     final Map<String, dynamic> userData = changeUserData().toJson();
     final checkErrors = _validateFields(userData);
@@ -44,7 +44,7 @@ class ValidationHelper {
     errorData[changedFieldName] = checkErrors[changedFieldName];
     errorData[StringConsts.dataValid] = checkErrors[StringConsts.dataValid];
 
-    return RegErrorDTO.fromJson(errorData);
+    return RegistrationErrorDTO.fromJson(errorData);
   }
 
   Map<String, dynamic> _validateFields(

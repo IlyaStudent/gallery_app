@@ -1,8 +1,12 @@
 part of '../../autentithication_part.dart';
 
+// import 'package:freezed_annotation/freezed_annotation.dart';
+// part 'reg_dto.g.dart';
+// part 'reg_dto.freezed.dart';
+
 @freezed
-class RegDTO with _$RegDTO {
-  const factory RegDTO({
+class RegistrationDTO with _$RegDTO {
+  const factory RegistrationDTO({
     String? plainPassword,
     String? email,
     String? birthday,
@@ -10,5 +14,6 @@ class RegDTO with _$RegDTO {
     String? confirmPassword,
   }) = _RegDTO;
 
-  factory RegDTO.fromJson(Map<String, dynamic> json) => _$RegDTOFromJson(json);
+  factory RegistrationDTO.fromJson(Map<String, dynamic> json) =>
+      _$RegDTOFromJson(json);
 }

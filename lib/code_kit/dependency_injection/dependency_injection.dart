@@ -1,37 +1,48 @@
 part of '../code_kit.dart';
 
-final sl = GetIt.instance;
+final instance = GetIt.instance;
+const FlutterSecureStorage _storage = FlutterSecureStorage();
 
 Future<void> init() async {
   // Repository
-  sl.registerLazySingleton<AuthentithicationRepository>(
-    () => AuthentithicationRepositoryImpl(
-      networkInfo: sl(),
-      apiAuthorization: sl(),
-    ),
-  );
-  sl.registerLazySingleton<ApiAutentithication>(
-    () => ApiAutentithication(
-      sl(),
-    ),
-  );
-  sl.registerLazySingleton<RefreshApi>(
-    () => RefreshApi(
-      sl(),
-    ),
-  );
+  instance
+    ..registerLazySingleton<AuthentithicationRepository>(
+      () => AuthentithicationRepositoryImpl(
+        networkInfo: instance(),
+        apiAuthorization: instance(),
+      ),
+    )
+    ..registerLazySingleton<ApiAutentithication>(
+      () => ApiAutentithication(
+        instance(),
+      ),
+    )
+    ..registerLazySingleton<RefreshApi>(
+      () => RefreshApi(
+        instance(),
+      ),
+    )
+    ..registerLazySingleton<TokenSecureStorage>(
+      () => TokenSecureStorageImpl(
+        storage: instance(),
+      ),
+    )
 
-  // Core
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+    // Core
+    ..registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(
+        instance(),
+      ),
+    )
 
-  // External
-  sl.registerLazySingleton(
-    () => dio.Dio(),
-  );
-  sl.registerLazySingleton(
-    () => InternetConnectionChecker(),
-  );
-  sl.registerLazySingleton(
-    () => const FlutterSecureStorage(),
-  );
+    // External
+    ..registerLazySingleton(
+      () => dio.Dio(),
+    )
+    ..registerLazySingleton(
+      () => InternetConnectionChecker(),
+    )
+    ..registerLazySingleton(
+      () => _storage,
+    );
 }
