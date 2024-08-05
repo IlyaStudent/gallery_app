@@ -10,5 +10,6 @@
   "iAlreadyHaveAnAccount": "I already have an account",
   "createAnAccount": "Create an account",
   "noInternetConnection": "No internet connection",
-  "incorrectLoginOrPassword": "Incorrect login or password"
+  "incorrectLoginOrPassword": "Incorrect login or password",
+  "home": "home"
 }

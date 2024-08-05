@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:gallery_app/autentithication/autentithication_part.dart';
-import 'package:gallery_app/home/screens/home_page.dart';
+import 'package:gallery_app/home/home_part.dart';
 
 part 'app_router.gr.dart';
 

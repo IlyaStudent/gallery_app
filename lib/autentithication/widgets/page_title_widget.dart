@@ -2,7 +2,10 @@ part of '../autentithication_part.dart';
 
 class PageTitleWidget extends StatelessWidget {
   final String text;
-  const PageTitleWidget({super.key, required this.text});
+  const PageTitleWidget({
+    super.key,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
