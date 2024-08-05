@@ -36,11 +36,11 @@ class CustomSearchBar extends StatelessWidget {
                 },
               )
             : null,
-        hintStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-              color: isEnabled
-                  ? AppColors.hintSearchColor
-                  : AppColors.hintDisabledSearchColor,
-            ),
+        hintStyle: context.theme.textTheme.labelMedium?.copyWith(
+          color: isEnabled
+              ? AppColors.hintSearchColor
+              : AppColors.hintDisabledSearchColor,
+        ),
         hintText: 'Search',
         filled: true,
         fillColor: AppColors.greyLight,
