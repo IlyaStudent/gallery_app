@@ -31,4 +31,8 @@ class StringConsts {
   static const String applicationIdJson = "application/ld+json";
   static const String accept = "accept";
   static const String contentType = "Content-Type";
+  static const String regPath = "/reg";
+  static const String authPath = "/auth";
+  static const String onBoardingPath = "";
+  static const String homePath = "/home";
 }

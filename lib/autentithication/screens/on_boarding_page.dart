@@ -16,7 +16,7 @@ class OnBoardingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("lib/ui_kit/assets/logo.png"),
+              Image.asset(AppImagesConsts.logo),
               Padding(
                 padding: const EdgeInsets.only(top: 36, bottom: 80),
                 child: Text(
@@ -27,7 +27,8 @@ class OnBoardingPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: CustomFilledButton(
-                  onPressed: () => context.router.pushNamed("/reg"),
+                  onPressed: () =>
+                      context.router.pushNamed(StringConsts.regPath),
                   text: S.of(context).createAnAccount,
                   isLoading: false,
                   isDisabled: false,
@@ -38,7 +39,8 @@ class OnBoardingPage extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: CustomOutlinedButton(
-                    onPressed: () => context.router.pushNamed("/auth"),
+                    onPressed: () =>
+                        context.router.pushNamed(StringConsts.authPath),
                     text: S.of(context).iAlreadyHaveAnAccount,
                     isLoading: false,
                     isDisabled: false,

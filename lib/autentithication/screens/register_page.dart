@@ -21,7 +21,7 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
     return BlocListener<RegistrationBloc, RegistrationState>(
       listener: (context, state) {
         if (state is _RegisteredState) {
-          context.router.replaceNamed("/home");
+          context.router.replaceNamed(StringConsts.homePath);
         }
       },
       child: BlocBuilder<RegistrationBloc, RegistrationState>(
@@ -64,7 +64,8 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                               onChanged: (text) =>
                                   context.read<RegistrationBloc>().add(
                                         ChangeDataEvent(
-                                          changedFieldName: "displayName",
+                                          changedFieldName:
+                                              StringConsts.displayName,
                                           changedFieldText: text,
                                         ),
                                       ),
@@ -75,13 +76,14 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                   ? state.regErrorDTO.birthday
                                   : null,
                               enabled: (state is _RegDataChecking),
-                              onChanged: (text) =>
-                                  context.read<RegistrationBloc>().add(
-                                        ChangeDataEvent(
-                                          changedFieldName: "birthday",
-                                          changedFieldText: text,
-                                        ),
-                                      ),
+                              onChanged: (text) => context
+                                  .read<RegistrationBloc>()
+                                  .add(
+                                    ChangeDataEvent(
+                                      changedFieldName: StringConsts.birthday,
+                                      changedFieldText: text,
+                                    ),
+                                  ),
                             ),
                             CustomTextField(
                                 hintText: S.of(context).email,
@@ -90,13 +92,14 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                     : null,
                                 suffixIcon: Icons.email_outlined,
                                 enabled: (state is _RegDataChecking),
-                                onChanged: (text) =>
-                                    context.read<RegistrationBloc>().add(
-                                          ChangeDataEvent(
-                                            changedFieldName: "email",
-                                            changedFieldText: text,
-                                          ),
-                                        )),
+                                onChanged: (text) => context
+                                    .read<RegistrationBloc>()
+                                    .add(
+                                      ChangeDataEvent(
+                                        changedFieldName: StringConsts.email,
+                                        changedFieldText: text,
+                                      ),
+                                    )),
                             CustomPasswordField(
                               hintText: S.of(context).password,
                               errorText: (state is _RegDataChecking)
@@ -106,7 +109,8 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                               onChanged: (text) =>
                                   context.read<RegistrationBloc>().add(
                                         ChangeDataEvent(
-                                          changedFieldName: "plainPassword",
+                                          changedFieldName:
+                                              StringConsts.plainPassword,
                                           changedFieldText: text,
                                         ),
                                       ),
@@ -120,7 +124,8 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                               onChanged: (text) =>
                                   context.read<RegistrationBloc>().add(
                                         ChangeDataEvent(
-                                          changedFieldName: "confirmPassword",
+                                          changedFieldName:
+                                              StringConsts.confirmPassword,
                                           changedFieldText: text,
                                         ),
                                       ),
@@ -142,7 +147,8 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                         height: 10,
                       ),
                       CustomTextButton(
-                        onPressed: () => context.router.replaceNamed("/auth"),
+                        onPressed: () =>
+                            context.router.replaceNamed(StringConsts.authPath),
                         text: S.of(context).signIn,
                         isLoading: false,
                         isDisabled: (state is _RegLoadingState),

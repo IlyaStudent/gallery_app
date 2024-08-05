@@ -30,7 +30,7 @@ class _AuthPageState extends State<AuthPage> {
     return BlocListener<AuthorizationBloc, AuthorizationState>(
       listener: (context, state) {
         if (state is _AuthorizationAuthorizedState) {
-          context.router.replaceNamed("/home");
+          context.router.replaceNamed(StringConsts.homePath);
         }
       },
       child: BlocBuilder<AuthorizationBloc, AuthorizationState>(
@@ -92,7 +92,8 @@ class _AuthPageState extends State<AuthPage> {
                         isDisabled: (state is _AuthorizationLoadingState),
                       ),
                       CustomTextButton(
-                        onPressed: () => context.router.replaceNamed("/reg"),
+                        onPressed: () =>
+                            context.router.replaceNamed(StringConsts.regPath),
                         text: S.of(context).signUp,
                         isLoading: false,
                         isDisabled: (state is _AuthorizationLoadingState),
