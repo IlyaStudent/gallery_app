@@ -4,16 +4,16 @@
 // part 'user_model.g.dart';
 
 // @JsonSerializable()
-// class UserModel {
-//   const UserModel({this.id, this.name, this.avatar, this.createdAt});
+// class UserDTO {
+//   const UserDTO({this.id, this.name, this.avatar, this.createdAt});
 
-//   factory UserModel.fromJson(Map<String, dynamic> json) =>
-//       _$UserModelFromJson(json);
+//   factory UserDTO.fromJson(Map<String, dynamic> json) =>
+//       _$UserDTOFromJson(json);
 
 //   final String? id;
 //   final String? name;
 //   final String? avatar;
 //   final String? createdAt;
 
-//   Map<String, dynamic> toJson() => _$UserModelToJson(this);
+//   Map<String, dynamic> toJson() => _$UserDTOToJson(this);
 // }

@@ -1,16 +1,17 @@
 part of '../code_kit.dart';
 
 class RefreshInterceptor extends dio.Interceptor {
-  dio.Dio api =
-      dio.Dio(dio.BaseOptions(baseUrl: "https://gallery.prod2.webant.ru"));
+  final RefreshApi refreshApi;
 
-  final _storage = const FlutterSecureStorage();
+  final FlutterSecureStorage storage;
+
+  RefreshInterceptor({required this.storage, required this.refreshApi});
 
   @override
   void onRequest(
       dio.RequestOptions options, dio.RequestInterceptorHandler handler) async {
-    final accessToken = await _storage.read(key: "accessToken");
-    options.headers['Authorization'] = 'Bearer ${accessToken}';
+    final accessToken = await storage.read(key: "accessToken");
+    options.headers['Authorization'] = 'Bearer $accessToken';
     return handler.next(options);
   }
 
@@ -26,9 +27,10 @@ class RefreshInterceptor extends dio.Interceptor {
     if (err.response != null) {
       switch (err.response?.statusCode) {
         case 401:
-          if (await _storage.containsKey(key: "refreshToken")) {
+          if (await storage.containsKey(key: "refreshToken") &&
+              err.response != null) {
             await _refreshToken();
-            return handler.resolve(await _retry(err.requestOptions));
+            return handler.resolve(err.response!);
           }
           break;
         default:
@@ -38,35 +40,17 @@ class RefreshInterceptor extends dio.Interceptor {
   }
 
   Future<void> _refreshToken() async {
-    final refreshToken = await _storage.read(key: "refreshToken");
-    RefreshModel refreshModel = RefreshModel(
+    final refreshToken = await storage.read(key: "refreshToken");
+    RefreshDTO refreshDTO = RefreshDTO(
       refreshToken: refreshToken!,
     );
 
-    final response = await api.post(
-      "/refresh",
-      data: refreshModel,
-    );
-
-    if (response.statusCode == 201) {
-      final TokenModel tokenModel = response.data;
-      await _storage.write(key: "accessToken", value: tokenModel.accessToken);
-      await _storage.write(key: "refreshToken", value: tokenModel.refreshToken);
-    } else {
-      await _storage.deleteAll();
+    try {
+      final TokenDTO tokenModel = await refreshApi.refresh(refreshDTO);
+      await storage.write(key: "accessToken", value: tokenModel.accessToken);
+      await storage.write(key: "refreshToken", value: tokenModel.refreshToken);
+    } catch (e) {
+      await storage.deleteAll();
     }
-  }
-
-  Future<dio.Response<dynamic>> _retry(dio.RequestOptions requestOptions) {
-    final options = dio.Options(
-      method: requestOptions.method,
-      headers: requestOptions.headers,
-    );
-    return api.request<dynamic>(
-      requestOptions.path,
-      data: requestOptions.data,
-      queryParameters: requestOptions.queryParameters,
-      options: options,
-    );
   }
 }

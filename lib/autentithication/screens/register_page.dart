@@ -1,20 +1,31 @@
 part of '../autentithication_part.dart';
 
 @RoutePage()
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
   const RegisterPage({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return BlocProvider<RegistrationBloc>(
-      create: (context) => sl<RegistrationBloc>(),
+      create: (context) => RegistrationBloc(
+        authentithicationRepository: sl<AuthentithicationRepository>(),
+      ),
+      child: this,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<RegistrationBloc, RegistrationState>(
+      listener: (context, state) {
+        if (state is _RegisteredState) {
+          context.router.replaceNamed("/home");
+        }
+      },
       child: BlocBuilder<RegistrationBloc, RegistrationState>(
         builder: (context, state) {
-          if (state is RegisteredState) {
-            context.router.replaceNamed("/home");
-          }
           return SafeArea(
             child: Scaffold(
               body: Center(
@@ -24,8 +35,8 @@ class RegisterPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const PageTitleWidget(
-                        text: "Sign up",
+                      PageTitleWidget(
+                        text: S.of(context).signUp,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 60),
@@ -34,83 +45,81 @@ class RegisterPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              (state is RegDataChecking &&
-                                      state.regErrorModel.regError != null)
-                                  ? state.regErrorModel.regError!
+                              (state is _RegDataChecking &&
+                                      state.regErrorDTO.regError != null)
+                                  ? state.regErrorDTO.regError!
                                   : "",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
+                              style: context.theme.textTheme.bodySmall
                                   ?.copyWith(color: AppColors.errorRed),
                               maxLines: 1,
                               textAlign: TextAlign.left,
                             ),
                             CustomTextField(
-                              hintText: "Username",
-                              errorText: (state is RegDataChecking)
-                                  ? state.regErrorModel.displayName
+                              hintText: S.of(context).username,
+                              errorText: (state is _RegDataChecking)
+                                  ? state.regErrorDTO.displayName
                                   : null,
                               suffixIcon: Icons.person,
-                              enabled: (state is RegDataChecking),
+                              enabled: (state is _RegDataChecking),
                               onChanged: (text) =>
                                   context.read<RegistrationBloc>().add(
-                                        ChangeRegDataEvent(
+                                        ChangeDataEvent(
                                           changedFieldName: "displayName",
                                           changedFieldText: text,
                                         ),
                                       ),
                             ),
                             CustomDateField(
-                              hintText: "Birthday",
-                              errorText: (state is RegDataChecking)
-                                  ? state.regErrorModel.birthday
+                              hintText: S.of(context).birthday,
+                              errorText: (state is _RegDataChecking)
+                                  ? state.regErrorDTO.birthday
                                   : null,
-                              enabled: (state is RegDataChecking),
+                              enabled: (state is _RegDataChecking),
                               onChanged: (text) =>
                                   context.read<RegistrationBloc>().add(
-                                        ChangeRegDataEvent(
+                                        ChangeDataEvent(
                                           changedFieldName: "birthday",
                                           changedFieldText: text,
                                         ),
                                       ),
                             ),
                             CustomTextField(
-                                hintText: "Email",
-                                errorText: (state is RegDataChecking)
-                                    ? state.regErrorModel.email
+                                hintText: S.of(context).email,
+                                errorText: (state is _RegDataChecking)
+                                    ? state.regErrorDTO.email
                                     : null,
                                 suffixIcon: Icons.email_outlined,
-                                enabled: (state is RegDataChecking),
+                                enabled: (state is _RegDataChecking),
                                 onChanged: (text) =>
                                     context.read<RegistrationBloc>().add(
-                                          ChangeRegDataEvent(
+                                          ChangeDataEvent(
                                             changedFieldName: "email",
                                             changedFieldText: text,
                                           ),
                                         )),
                             CustomPasswordField(
-                              hintText: "Password",
-                              errorText: (state is RegDataChecking)
-                                  ? state.regErrorModel.plainPassword
+                              hintText: S.of(context).password,
+                              errorText: (state is _RegDataChecking)
+                                  ? state.regErrorDTO.plainPassword
                                   : null,
-                              enabled: (state is RegDataChecking),
+                              enabled: (state is _RegDataChecking),
                               onChanged: (text) =>
                                   context.read<RegistrationBloc>().add(
-                                        ChangeRegDataEvent(
+                                        ChangeDataEvent(
                                           changedFieldName: "plainPassword",
                                           changedFieldText: text,
                                         ),
                                       ),
                             ),
                             CustomPasswordField(
-                              hintText: "Confirm password",
-                              errorText: (state is RegDataChecking)
-                                  ? state.regErrorModel.confirmPassword
+                              hintText: S.of(context).confirmPassword,
+                              errorText: (state is _RegDataChecking)
+                                  ? state.regErrorDTO.confirmPassword
                                   : null,
-                              enabled: (state is RegDataChecking),
+                              enabled: (state is _RegDataChecking),
                               onChanged: (text) =>
                                   context.read<RegistrationBloc>().add(
-                                        ChangeRegDataEvent(
+                                        ChangeDataEvent(
                                           changedFieldName: "confirmPassword",
                                           changedFieldText: text,
                                         ),
@@ -121,12 +130,12 @@ class RegisterPage extends StatelessWidget {
                       ),
                       CustomFilledButton(
                         onPressed: () => context.read<RegistrationBloc>().add(
-                              RegisterEvent(),
+                              const RegisterEvent(),
                             ),
-                        text: "Sign Up",
+                        text: S.of(context).signUp,
                         isLoading: false,
-                        isDisabled: (state is RegDataChecking)
-                            ? !state.regErrorModel.dataValid
+                        isDisabled: (state is _RegDataChecking)
+                            ? !state.regErrorDTO.dataValid
                             : true,
                       ),
                       const SizedBox(
@@ -134,9 +143,9 @@ class RegisterPage extends StatelessWidget {
                       ),
                       CustomTextButton(
                         onPressed: () => context.router.replaceNamed("/auth"),
-                        text: "Sign In",
+                        text: S.of(context).signIn,
                         isLoading: false,
-                        isDisabled: (state is RegLoadingState),
+                        isDisabled: (state is _RegLoadingState),
                       ),
                     ],
                   ),

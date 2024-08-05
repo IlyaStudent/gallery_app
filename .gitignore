@@ -41,3 +41,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/lib/autentithication/models/dto/error_dto_freezed.dart
+/lib/autentithication/models/dto/error_dto_g.dart
+/lib/autentithication/models/dto/login_dto_freezed.dart
+/lib/autentithication/models/dto/login_dto_g.dart
+/lib/autentithication/models/dto/refresh_dto_freezed.dart
+/lib/autentithication/models/dto/refresh_dto_g.dart
+/lib/autentithication/models/dto/reg_dto_freezed.dart
+/lib/autentithication/models/dto/reg_dto_g.dart
+/lib/autentithication/models/dto/reg_error_dto_freezed.dart
+/lib/autentithication/models/dto/reg_error_dto_g.dart
+/lib/autentithication/models/dto/token_dto_freezed.dart
+/lib/autentithication/models/dto/token_dto_g.dart

@@ -38,9 +38,9 @@ class CustomFilledButton extends StatelessWidget {
             ? const CustomLoader(color: AppColors.white)
             : Text(
                 text,
-                style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      color: isDisabled ? AppColors.grey : AppColors.white,
-                    ),
+                style: context.theme.textTheme.displayLarge?.copyWith(
+                  color: isDisabled ? AppColors.grey : AppColors.white,
+                ),
               ),
       ),
     );

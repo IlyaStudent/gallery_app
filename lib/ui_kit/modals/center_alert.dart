@@ -23,9 +23,9 @@ class CenterAlertDialog {
             },
             child: Text(
               'Exit',
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: AppColors.blue,
-                  ),
+              style: context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.blue,
+              ),
             ),
           ),
           CupertinoDialogAction(
@@ -34,9 +34,9 @@ class CenterAlertDialog {
             },
             child: Text(
               'Confirm',
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: AppColors.blue,
-                  ),
+              style: context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.blue,
+              ),
             ),
           ),
         ],

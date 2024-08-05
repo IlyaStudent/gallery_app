@@ -1,29 +1,11 @@
 part of '../../autentithication_part.dart';
 
-sealed class RegistrationState extends Equatable {
-  const RegistrationState();
-
-  @override
-  List<Object?> get props => [];
+@freezed
+sealed class RegistrationState with _$RegistrationState {
+  const factory RegistrationState.checking({
+    required RegErrorDTO regErrorDTO,
+    required RegDTO regDTO,
+  }) = _RegDataChecking;
+  const factory RegistrationState.regLoading() = _RegLoadingState;
+  const factory RegistrationState.regisetered() = _RegisteredState;
 }
-
-final class RegDataChecking extends RegistrationState {
-  final RegErrorModel regErrorModel;
-
-  final RegModel regModel;
-
-  const RegDataChecking({
-    required this.regErrorModel,
-    required this.regModel,
-  });
-
-  @override
-  List<Object?> get props => [
-        regModel,
-        regErrorModel,
-      ];
-}
-
-final class RegLoadingState extends RegistrationState {}
-
-final class RegisteredState extends RegistrationState {}

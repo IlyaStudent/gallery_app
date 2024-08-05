@@ -1,21 +1,9 @@
 part of '../../autentithication_part.dart';
 
-sealed class AuthorizationState extends Equatable {
-  const AuthorizationState();
-
-  @override
-  List<Object?> get props => [];
+@freezed
+sealed class AuthorizationState with _$AuthorizationState {
+  const factory AuthorizationState.initial({String? erorMessage}) =
+      _AuthorizationInitialState;
+  const factory AuthorizationState.loading() = _AuthorizationLoadingState;
+  const factory AuthorizationState.authotized() = _AuthorizationAuthorizedState;
 }
-
-final class AuthorizationInitial extends AuthorizationState {
-  final String? erorMessage;
-
-  const AuthorizationInitial({this.erorMessage});
-
-  @override
-  List<Object?> get props => [erorMessage];
-}
-
-final class AuthLoadingState extends AuthorizationState {}
-
-final class AuthorizedState extends AuthorizationState {}

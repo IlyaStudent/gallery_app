@@ -40,7 +40,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       enabled: enabled,
       cursorColor: AppColors.black,
-      style: Theme.of(context).textTheme.labelMedium,
+      style: context.theme.textTheme.labelMedium,
       decoration: InputDecoration(
         helperText: "",
         suffixIcon: isError
@@ -56,17 +56,17 @@ class CustomTextField extends StatelessWidget {
               ),
         hintText: hintText,
         hintStyle: enabled
-            ? Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.grey,
-                )
-            : Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.greyLight,
-                ),
+            ? context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.grey,
+              )
+            : context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.greyLight,
+              ),
         errorMaxLines: 1,
         errorText: errorText,
-        errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.errorRed,
-            ),
+        errorStyle: context.theme.textTheme.bodySmall?.copyWith(
+          color: AppColors.errorRed,
+        ),
         contentPadding: const EdgeInsets.all(12),
         border: greyBorder,
         focusedBorder: blackBorder,

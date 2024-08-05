@@ -3,28 +3,20 @@ part of '../code_kit.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // BLoC & Cubit
-
-  sl.registerFactory(
-    () => RegistrationBloc(
-      authentithicationRepository: sl<AuthentithicationRepository>(),
-    ),
-  );
-  sl.registerFactory(
-    () => AuthorizationBloc(
-      authentithicationRepository: sl<AuthentithicationRepository>(),
-    ),
-  );
-
   // Repository
   sl.registerLazySingleton<AuthentithicationRepository>(
-    () => AuthorizationRepositoryImpl(
+    () => AuthentithicationRepositoryImpl(
       networkInfo: sl(),
       apiAuthorization: sl(),
     ),
   );
   sl.registerLazySingleton<ApiAutentithication>(
     () => ApiAutentithication(
+      sl(),
+    ),
+  );
+  sl.registerLazySingleton<RefreshApi>(
+    () => RefreshApi(
       sl(),
     ),
   );
@@ -38,5 +30,8 @@ Future<void> init() async {
   );
   sl.registerLazySingleton(
     () => InternetConnectionChecker(),
+  );
+  sl.registerLazySingleton(
+    () => const FlutterSecureStorage(),
   );
 }

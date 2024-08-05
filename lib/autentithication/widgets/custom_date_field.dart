@@ -40,7 +40,7 @@ class _CustomDateFieldState extends State<CustomDateField> {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       firstDate: DateTime(1900),
-      lastDate: DateTime(DateTime.now().year + 1),
+      lastDate: DateTime.now(),
     );
     if (pickedDate != null) {
       setState(() {

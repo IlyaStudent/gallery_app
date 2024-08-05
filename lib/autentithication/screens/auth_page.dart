@@ -1,13 +1,24 @@
 part of '../autentithication_part.dart';
 
 @RoutePage()
-class AuthPage extends StatefulWidget {
+class AuthPage extends StatefulWidget implements AutoRouteWrapper {
   const AuthPage({
     super.key,
   });
 
   @override
   State<AuthPage> createState() => _AuthPageState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (context) => AuthorizationBloc(
+        authentithicationRepository: sl<AuthentithicationRepository>(),
+        storage: sl<FlutterSecureStorage>(),
+      ),
+      child: this,
+    );
+  }
 }
 
 class _AuthPageState extends State<AuthPage> {
@@ -16,13 +27,14 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<AuthorizationBloc>(),
+    return BlocListener<AuthorizationBloc, AuthorizationState>(
+      listener: (context, state) {
+        if (state is _AuthorizationAuthorizedState) {
+          context.router.replaceNamed("/home");
+        }
+      },
       child: BlocBuilder<AuthorizationBloc, AuthorizationState>(
         builder: (context, state) {
-          if (state is AuthorizedState) {
-            context.router.replaceNamed("/home");
-          }
           return SafeArea(
             child: Scaffold(
               body: Center(
@@ -32,8 +44,8 @@ class _AuthPageState extends State<AuthPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const PageTitleWidget(
-                        text: "Sign in",
+                      PageTitleWidget(
+                        text: S.of(context).signIn,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 60),
@@ -42,26 +54,24 @@ class _AuthPageState extends State<AuthPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              (state is AuthorizationInitial &&
+                              (state is _AuthorizationInitialState &&
                                       state.erorMessage != null)
                                   ? state.erorMessage!
                                   : "",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
+                              style: context.theme.textTheme.bodySmall
                                   ?.copyWith(color: AppColors.errorRed),
                               maxLines: 1,
                               textAlign: TextAlign.left,
                             ),
                             CustomTextField(
-                              hintText: "Email",
+                              hintText: S.of(context).email,
                               suffixIcon: Icons.mail_outline,
-                              enabled: state is! AuthLoadingState,
+                              enabled: state is! _AuthorizationLoadingState,
                               controller: _emailController,
                             ),
                             CustomPasswordField(
-                              hintText: "Password",
-                              enabled: state is! AuthLoadingState,
+                              hintText: S.of(context).password,
+                              enabled: state is! _AuthorizationLoadingState,
                               controller: _passwordController,
                             )
                           ],
@@ -71,21 +81,21 @@ class _AuthPageState extends State<AuthPage> {
                         onPressed: () => context.read<AuthorizationBloc>()
                           ..add(
                             AuthorizeEvent(
-                              loginModel: LoginModel(
+                              loginDTO: LoginDTO(
                                 username: _emailController.text,
                                 password: _passwordController.text,
                               ),
                             ),
                           ),
-                        text: "Sign In",
+                        text: S.of(context).signIn,
                         isLoading: false,
-                        isDisabled: (state is AuthLoadingState),
+                        isDisabled: (state is _AuthorizationLoadingState),
                       ),
                       CustomTextButton(
                         onPressed: () => context.router.replaceNamed("/reg"),
-                        text: "Sign Up",
+                        text: S.of(context).signUp,
                         isLoading: false,
-                        isDisabled: (state is AuthLoadingState),
+                        isDisabled: (state is _AuthorizationLoadingState),
                       ),
                     ],
                   ),

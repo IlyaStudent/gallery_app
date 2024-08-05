@@ -1,31 +1,42 @@
 part of '../../autentithication_part.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
-  AuthorizationBloc({required this.authentithicationRepository})
-      : super(const AuthorizationInitial()) {
-    on<AuthorizeEvent>(_onEvent);
+  AuthorizationBloc({
+    required this.authentithicationRepository,
+    required this.storage,
+  }) : super(const AuthorizationState.initial()) {
+    on<AuthorizeEvent>(_onAuthorizeEvent);
   }
 
-  final FlutterSecureStorage _storage = const FlutterSecureStorage();
+  final FlutterSecureStorage storage;
 
   final AuthentithicationRepository authentithicationRepository;
 
-  void _onEvent(
+  void _onAuthorizeEvent(
     AuthorizationEvent event,
     Emitter<AuthorizationState> emit,
   ) async {
     if (event is AuthorizeEvent) {
-      emit(AuthLoadingState());
-      final dartz.Either<ServerFailure, TokenModel?> failureOrToken =
-          await authentithicationRepository.loginUser(event.loginModel);
-      failureOrToken.fold(
-        (error) => emit(AuthorizationInitial(erorMessage: error.errorMessage)),
-        (token) async {
-          emit(AuthorizedState());
-          await _storage.write(key: "accessToken", value: token?.accessToken);
-          await _storage.write(key: "refreshToken", value: token?.refreshToken);
-        },
-      );
+      emit(const AuthorizationState.loading());
+      try {
+        final TokenDTO tokenDTO =
+            await authentithicationRepository.loginUser(event.loginDTO);
+        emit(const AuthorizationState.authotized());
+        await storage.write(
+          key: StringConsts.acccessTokenKey,
+          value: tokenDTO.accessToken,
+        );
+        await storage.write(
+          key: StringConsts.refreshTokenKey,
+          value: tokenDTO.refreshToken,
+        );
+      } on dio.DioException catch (error) {
+        emit(
+          AuthorizationState.initial(
+            erorMessage: error.message,
+          ),
+        );
+      }
     }
   }
 }

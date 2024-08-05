@@ -20,15 +20,15 @@ class OnBoardingPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 36, bottom: 80),
                 child: Text(
-                  "Welcome to gallery",
-                  style: Theme.of(context).textTheme.headlineLarge,
+                  S.of(context).welcomeToGallery,
+                  style: context.theme.textTheme.headlineLarge,
                 ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: CustomFilledButton(
                   onPressed: () => context.router.pushNamed("/reg"),
-                  text: "Create an account",
+                  text: S.of(context).createAnAccount,
                   isLoading: false,
                   isDisabled: false,
                 ),
@@ -39,7 +39,7 @@ class OnBoardingPage extends StatelessWidget {
                   width: double.infinity,
                   child: CustomOutlinedButton(
                     onPressed: () => context.router.pushNamed("/auth"),
-                    text: "I already have an account",
+                    text: S.of(context).iAlreadyHaveAnAccount,
                     isLoading: false,
                     isDisabled: false,
                   ),
