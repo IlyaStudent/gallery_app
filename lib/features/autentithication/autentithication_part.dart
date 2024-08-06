@@ -20,8 +20,8 @@ part 'screens/register_page.dart';
 part 'screens/auth_page.dart';
 
 part 'data_provider/autentithication_interceptor.dart';
-part 'data_provider/api_autentithication.dart';
-part 'data_provider/api_autentithication_g.dart';
+part 'data_provider/autentithication_api.dart';
+part 'data_provider/autentithication_api_g.dart';
 
 part 'widgets/custom_password_field.dart';
 part 'widgets/custom_date_field.dart';
