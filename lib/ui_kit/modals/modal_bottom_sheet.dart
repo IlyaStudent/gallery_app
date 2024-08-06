@@ -31,9 +31,9 @@ class ModalBottomSheet {
             onPressed: secondAction,
             child: Text(
               secondActionText,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: AppColors.blue,
-                  ),
+              style: context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.blue,
+              ),
             ),
           ),
           CupertinoActionSheetAction(
@@ -43,9 +43,9 @@ class ModalBottomSheet {
             },
             child: Text(
               'Cancel',
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: AppColors.blue,
-                  ),
+              style: context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.blue,
+              ),
             ),
           ),
         ],

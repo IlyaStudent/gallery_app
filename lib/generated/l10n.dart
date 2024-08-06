@@ -49,6 +49,146 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Sign up`
+  String get signUp {
+    return Intl.message(
+      'Sign up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get username {
+    return Intl.message(
+      'Username',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birthday`
+  String get birthday {
+    return Intl.message(
+      'Birthday',
+      name: 'birthday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get confirmPassword {
+    return Intl.message(
+      'Confirm password',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get signIn {
+    return Intl.message(
+      'Sign In',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to gallery`
+  String get welcomeToGallery {
+    return Intl.message(
+      'Welcome to gallery',
+      name: 'welcomeToGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I already have an account`
+  String get iAlreadyHaveAnAccount {
+    return Intl.message(
+      'I already have an account',
+      name: 'iAlreadyHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create an account`
+  String get createAnAccount {
+    return Intl.message(
+      'Create an account',
+      name: 'createAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No internet connection`
+  String get noInternetConnection {
+    return Intl.message(
+      'No internet connection',
+      name: 'noInternetConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect login or password`
+  String get incorrectLoginOrPassword {
+    return Intl.message(
+      'Incorrect login or password',
+      name: 'incorrectLoginOrPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `home`
+  String get home {
+    return Intl.message(
+      'home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry`
+  String get sorry {
+    return Intl.message(
+      'Sorry',
+      name: 'sorry',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

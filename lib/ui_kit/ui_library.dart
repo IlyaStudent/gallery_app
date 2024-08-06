@@ -3,6 +3,7 @@ library ui_library;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery_app/code_kit/code_kit.dart';
 part 'app_colors/app_colors.dart';
 part 'buttons/custom_filled_button.dart';
 part 'buttons/custom_fab_button.dart';

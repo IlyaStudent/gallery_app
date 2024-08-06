@@ -19,9 +19,9 @@ class LoaderWithLabel extends StatelessWidget {
           ),
           child: Text(
             "Loading...",
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.grey,
-                ),
+            style: context.theme.textTheme.labelMedium?.copyWith(
+              color: AppColors.grey,
+            ),
           ),
         )
       ],

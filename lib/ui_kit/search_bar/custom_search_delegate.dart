@@ -9,11 +9,11 @@ class CustomSearchDelegate extends SearchDelegate {
               vertical: 10,
               horizontal: 8,
             ),
-            hintStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.hintSearchColor,
-                ),
+            hintStyle: context.theme.textTheme.labelMedium?.copyWith(
+              color: AppColors.hintSearchColor,
+            ),
             filled: true,
-            labelStyle: Theme.of(context).textTheme.bodySmall,
+            labelStyle: context.theme.textTheme.bodySmall,
             fillColor: AppColors.greyLight,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
@@ -69,9 +69,9 @@ class CustomSearchDelegate extends SearchDelegate {
         },
         child: Text(
           "Cancel",
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: AppColors.blue,
-              ),
+          style: context.theme.textTheme.labelMedium?.copyWith(
+            color: AppColors.blue,
+          ),
         ),
       ),
     );

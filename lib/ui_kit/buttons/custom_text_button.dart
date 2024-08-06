@@ -43,7 +43,7 @@ class CustomTextButton extends StatelessWidget {
             ? const CustomLoader(color: AppColors.black)
             : Text(
                 text,
-                style: Theme.of(context).textTheme.labelMedium,
+                style: context.theme.textTheme.displayLarge,
               ),
       ),
     );

@@ -1,8 +1,10 @@
 part of '../ui_library.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController? controller;
+  final ValueChanged<String>? onChanged;
   final String? errorText;
-  final Icon suffixIcon;
+  final IconData? suffixIcon;
   final String hintText;
   final bool enabled;
   final bool isError;
@@ -11,63 +13,65 @@ class CustomTextField extends StatelessWidget {
     super.key,
     this.errorText,
     required this.hintText,
-    required this.suffixIcon,
+    this.suffixIcon,
     this.enabled = true,
     this.isError = false,
+    this.controller,
+    this.onChanged,
   });
+
+  static final greyBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(10),
+    borderSide: const BorderSide(
+      color: AppColors.grey,
+    ),
+  );
+  static final blackBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(10),
+    borderSide: const BorderSide(
+      color: AppColors.black,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
+      controller: controller,
       enabled: enabled,
       cursorColor: AppColors.black,
-      style: Theme.of(context).textTheme.labelMedium,
+      style: context.theme.textTheme.labelMedium,
       decoration: InputDecoration(
+        helperText: "",
         suffixIcon: isError
             ? const Icon(
                 Icons.warning,
                 size: 24,
                 color: AppColors.errorRed,
               )
-            : suffixIcon,
+            : Icon(
+                suffixIcon,
+                size: 24,
+                color: AppColors.grey,
+              ),
         hintText: hintText,
         hintStyle: enabled
-            ? Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.grey,
-                )
-            : Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.greyLight,
-                ),
+            ? context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.grey,
+              )
+            : context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.greyLight,
+              ),
         errorMaxLines: 1,
         errorText: errorText,
-        errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.errorRed,
-            ),
+        errorStyle: context.theme.textTheme.bodySmall?.copyWith(
+          color: AppColors.errorRed,
+        ),
         contentPadding: const EdgeInsets.all(12),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: AppColors.grey,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: AppColors.grey,
-          ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: AppColors.grey,
-          ),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: AppColors.grey,
-          ),
-        ),
+        border: greyBorder,
+        focusedBorder: blackBorder,
+        errorBorder: greyBorder,
+        disabledBorder: greyBorder,
       ),
     );
   }
