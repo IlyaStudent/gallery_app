@@ -6,7 +6,7 @@ class TokenSecureStorageImpl implements TokenSecureStorage {
   TokenSecureStorageImpl({required this.storage});
 
   @override
-  Future<TokenDTO> getToken() async {
+  Future<TokenModel> getToken() async {
     final Map<String, dynamic> tokenData = {
       StringConsts.acccessTokenKey: await storage.read(
         key: StringConsts.acccessTokenKey,

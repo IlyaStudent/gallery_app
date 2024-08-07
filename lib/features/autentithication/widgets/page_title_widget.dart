@@ -21,7 +21,7 @@ class PageTitleWidget extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.headlineLarge,
+        style: context.theme.textTheme.headlineLarge,
       ),
     );
   }

@@ -13,9 +13,6 @@ part 'bloc/on_borading_cubit/on_boarding_cubit.dart';
 part 'bloc/on_borading_cubit/on_boarding_cubit_freezed.dart';
 part 'bloc/on_borading_cubit/on_boarding_state.dart';
 
-part 'repository/on_boarding_repository.dart';
-part 'repository/on_boarding_repository_impl.dart';
-
 part 'screens/login_or_register_page.dart';
 part 'screens/on_boarding_page.dart';
 

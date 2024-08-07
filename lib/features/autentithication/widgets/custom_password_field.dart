@@ -52,9 +52,9 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
       obscureText: isObscure,
       enabled: widget.enabled,
       cursorColor: AppColors.black,
-      style: Theme.of(context).textTheme.labelMedium,
+      style: context.theme.textTheme.labelMedium,
       decoration: InputDecoration(
-        helperText: "",
+        helperText: StringConsts.emptyString,
         suffixIcon: widget.isError
             ? const Icon(
                 Icons.warning,
@@ -73,17 +73,17 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
               ),
         hintText: widget.hintText,
         hintStyle: widget.enabled
-            ? Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.grey,
-                )
-            : Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.greyLight,
-                ),
+            ? context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.grey,
+              )
+            : context.theme.textTheme.labelMedium?.copyWith(
+                color: AppColors.greyLight,
+              ),
         errorMaxLines: 1,
         errorText: widget.errorText,
-        errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.errorRed,
-            ),
+        errorStyle: context.theme.textTheme.bodySmall?.copyWith(
+          color: AppColors.errorRed,
+        ),
         contentPadding: const EdgeInsets.all(12),
         border: CustomPasswordField.greyBorder,
         focusedBorder: CustomPasswordField.blackBorder,

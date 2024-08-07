@@ -19,7 +19,6 @@ part 'widgets/page_title_widget.dart';
 part 'screens/register_page.dart';
 part 'screens/auth_page.dart';
 
-part 'data_provider/autentithication_interceptor.dart';
 part 'data_provider/autentithication_api.dart';
 part 'data_provider/autentithication_api_g.dart';
 
@@ -54,3 +53,5 @@ part 'models/dto/reg_error_dto_freezed.dart';
 part 'models/dto/token_dto.dart';
 part 'models/dto/token_dto_g.dart';
 part 'models/dto/token_dto_freezed.dart';
+
+part 'models/token_model.dart';

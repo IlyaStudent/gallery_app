@@ -14,6 +14,6 @@ class AuthentithicationRepositoryImpl implements AuthentithicationRepository {
       apiAuthorization.registerUser(regModel);
 
   @override
-  Future<TokenDTO> loginUser(LoginDTO loginModel) async =>
+  Future<TokenModel> loginUser(LoginDTO loginModel) async =>
       apiAuthorization.loginUser(loginModel);
 }

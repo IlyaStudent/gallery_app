@@ -1,24 +1,17 @@
 part of '../../on_boarding_part.dart';
 
-// import 'package:bloc/bloc.dart';
-// import 'package:freezed_annotation/freezed_annotation.dart';
-// import 'package:gallery_app/features/on_boarding/on_boarding_part.dart';
-
-// part 'on_boarding_state.dart';
-// part 'on_boarding_cubit.freezed.dart';
-
 class OnBoardingCubit extends Cubit<OnBoardingState> {
   OnBoardingCubit({
-    required this.onBoardinRepository,
+    required this.userRepository,
   }) : super(
           const OnBoardingState.initial(),
         );
 
-  final OnBoardinRepository onBoardinRepository;
+  final UserRepository userRepository;
 
   void getUser() async {
     try {
-      await onBoardinRepository.getCurrentUser();
+      await userRepository.getCurrentUser();
       emit(
         const OnBoardingState.isAuthorized(true),
       );

@@ -18,28 +18,30 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
     AuthorizationEvent event,
     Emitter<AuthorizationState> emit,
   ) async {
-    if (event is AuthorizeEvent) {
-      emit(
-        const AuthorizationState.loading(),
+    emit(
+      const AuthorizationState.loading(),
+    );
+    try {
+      final TokenModel tokenModel = await authentithicationRepository.loginUser(
+        event.loginDTO,
       );
-      try {
-        final TokenDTO tokenDTO = await authentithicationRepository.loginUser(
-          event.loginDTO,
-        );
-        emit(
-          const AuthorizationState.authotized(),
-        );
-        tokenSecureStorage.writeToken(
-          tokenDTO.access_token,
-          tokenDTO.refresh_token,
-        );
-      } on dio.DioException catch (error) {
-        emit(
-          AuthorizationState.initial(
-            erorMessage: error.message,
-          ),
-        );
-      }
+      emit(
+        const AuthorizationState.authotized(),
+      );
+      tokenSecureStorage.writeToken(
+        tokenModel.access_token,
+        tokenModel.refresh_token,
+      );
+    } on dio.DioException catch (error) {
+      emit(
+        AuthorizationState.initial(
+          erorMessage: error.message,
+        ),
+      );
     }
   }
+}
+
+extension AuthorizationBlocBuildContext on BuildContext {
+  AuthorizationBloc get readAuthorizationBloc => read();
 }

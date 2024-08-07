@@ -3,14 +3,18 @@ part of '../../autentithication_part.dart';
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   final AuthentithicationRepository authentithicationRepository;
   final TokenSecureStorage tokenSecureStorage;
+  final RegistrationDTO registrationDTO;
+  final RegistrationErrorDTO registrationErrorDTO;
 
   RegistrationBloc({
+    this.registrationDTO = const RegistrationDTO(),
+    this.registrationErrorDTO = const RegistrationErrorDTO(),
     required this.authentithicationRepository,
     required this.tokenSecureStorage,
   }) : super(
-          const RegistrationState.checking(
-            regDTO: RegistrationDTO(),
-            regErrorDTO: RegistrationErrorDTO(),
+          RegistrationState.checking(
+            regDTO: registrationDTO,
+            regErrorDTO: registrationErrorDTO,
           ),
         ) {
     on<RegisterEvent>(_onRegistrationEvent);
@@ -30,12 +34,13 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           username: currentState.regDTO.email!,
           password: currentState.regDTO.plainPassword!,
         );
-        final TokenDTO tokenDTO = await authentithicationRepository.loginUser(
+        final TokenModel tokenModel =
+            await authentithicationRepository.loginUser(
           loginDTO,
         );
         await tokenSecureStorage.writeToken(
-          tokenDTO.access_token,
-          tokenDTO.refresh_token,
+          tokenModel.access_token,
+          tokenModel.refresh_token,
         );
         emit(const RegistrationState.regisetered());
       } on dio.DioException catch (error) {
@@ -73,4 +78,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       );
     }
   }
+}
+
+extension RegisatationBlocBuildContext on BuildContext {
+  RegistrationBloc get readRegistrationBloc => read();
 }

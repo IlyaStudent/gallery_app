@@ -42,7 +42,7 @@ class CustomTextField extends StatelessWidget {
       cursorColor: AppColors.black,
       style: context.theme.textTheme.labelMedium,
       decoration: InputDecoration(
-        helperText: "",
+        helperText: StringConsts.emptyString,
         suffixIcon: isError
             ? const Icon(
                 Icons.warning,

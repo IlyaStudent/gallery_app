@@ -1,10 +1,13 @@
 part of "../code_kit.dart";
 
 class StringConsts {
+  static const String emptyString = "";
+
   static const String regEmailValidate = r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
   static const String regDateValidate = r"\d{1,2}\.\d{1,2}\.\d{4}";
   static const String logoImage = "lib/ui_kit/assets/logo.png";
   static const String errorLogoImage = "lib/ui_kit/assets/error_logo.png";
+
   static const String grantTypePassword = "password";
   static const String grantTypeRefresh = "refresh_token";
   static const String authotization = "Authorization";
@@ -39,8 +42,10 @@ class StringConsts {
   static const String applicationIdJson = "application/ld+json";
   static const String accept = "accept";
   static const String contentType = "Content-Type";
+
   static const String regPath = "/reg";
   static const String authPath = "/auth";
-  static const String onBoardingPath = "";
+  static const String onBoardingPath = "/onBoarding";
+  static const String logOrRegPath = "/logOrReg";
   static const String homePath = "/home";
 }

@@ -1,6 +1,6 @@
 part of '../autentithication_part.dart';
 
-@RestApi(baseUrl: StringConsts.apiLink)
+@RestApi()
 abstract class AutentithicationApi {
   factory AutentithicationApi(dio.Dio dio, {String baseUrl}) =
       _AutentithicationApi;

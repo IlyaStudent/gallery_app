@@ -12,8 +12,8 @@ Future<void> init() async {
         apiAuthorization: instance(),
       ),
     )
-    ..registerLazySingleton<OnBoardinRepository>(
-      () => OnBoardingRepositoryImpl(
+    ..registerLazySingleton<UserRepository>(
+      () => UserRepositoryImpl(
         currentUserApi: instance(),
       ),
     )
@@ -49,7 +49,11 @@ Future<void> init() async {
 
     // External
     ..registerLazySingleton(
-      () => dio.Dio(),
+      () => dio.Dio(
+        dio.BaseOptions(
+          baseUrl: StringConsts.apiLink,
+        ),
+      ),
     )
     ..registerLazySingleton(
       () => InternetConnectionChecker(),
@@ -57,11 +61,12 @@ Future<void> init() async {
     ..registerLazySingleton(
       () => _storage,
     )
-    ..registerLazySingleton(
+    ..registerLazySingleton<dio.Interceptor>(
       () => RefreshInterceptor(
         storage: instance(),
         refreshApi: instance(),
         tokenSecureStorage: instance(),
+        networkInfo: instance(),
       ),
     );
 }
