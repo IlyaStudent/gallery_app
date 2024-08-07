@@ -1,19 +1,17 @@
-part of '../ui_library.dart';
+part of '../autentithication_part.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomPasswordField extends StatefulWidget {
   final TextEditingController? controller;
-  final ValueChanged<String>? onChanged;
   final String? errorText;
-  final IconData? suffixIcon;
   final String hintText;
   final bool enabled;
   final bool isError;
+  final ValueChanged<String>? onChanged;
 
-  const CustomTextField({
+  const CustomPasswordField({
     super.key,
     this.errorText,
     required this.hintText,
-    this.suffixIcon,
     this.enabled = true,
     this.isError = false,
     this.controller,
@@ -34,28 +32,47 @@ class CustomTextField extends StatelessWidget {
   );
 
   @override
+  State<CustomPasswordField> createState() => _CustomPasswordFieldState();
+}
+
+class _CustomPasswordFieldState extends State<CustomPasswordField> {
+  bool isObscure = true;
+
+  void _changeVisibility() {
+    setState(() {
+      isObscure = !isObscure;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: onChanged,
-      controller: controller,
-      enabled: enabled,
+      onChanged: widget.onChanged,
+      controller: widget.controller,
+      obscureText: isObscure,
+      enabled: widget.enabled,
       cursorColor: AppColors.black,
       style: context.theme.textTheme.labelMedium,
       decoration: InputDecoration(
         helperText: StringConsts.emptyString,
-        suffixIcon: isError
+        suffixIcon: widget.isError
             ? const Icon(
                 Icons.warning,
                 size: 24,
                 color: AppColors.errorRed,
               )
-            : Icon(
-                suffixIcon,
-                size: 24,
-                color: AppColors.grey,
+            : IconButton(
+                icon: Icon(
+                  isObscure
+                      ? Icons.visibility_outlined
+                      : Icons.visibility_off_outlined,
+                  size: 24,
+                  color: AppColors.grey,
+                ),
+                onPressed: _changeVisibility,
               ),
-        hintText: hintText,
-        hintStyle: enabled
+        hintText: widget.hintText,
+        hintStyle: widget.enabled
             ? context.theme.textTheme.labelMedium?.copyWith(
                 color: AppColors.grey,
               )
@@ -63,15 +80,15 @@ class CustomTextField extends StatelessWidget {
                 color: AppColors.greyLight,
               ),
         errorMaxLines: 1,
-        errorText: errorText,
+        errorText: widget.errorText,
         errorStyle: context.theme.textTheme.bodySmall?.copyWith(
           color: AppColors.errorRed,
         ),
         contentPadding: const EdgeInsets.all(12),
-        border: greyBorder,
-        focusedBorder: blackBorder,
-        errorBorder: greyBorder,
-        disabledBorder: greyBorder,
+        border: CustomPasswordField.greyBorder,
+        focusedBorder: CustomPasswordField.blackBorder,
+        errorBorder: CustomPasswordField.greyBorder,
+        disabledBorder: CustomPasswordField.greyBorder,
       ),
     );
   }
