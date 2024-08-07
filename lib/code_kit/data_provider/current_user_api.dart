@@ -1,6 +1,6 @@
 part of '../code_kit.dart';
 
-@RestApi(baseUrl: StringConsts.apiLink)
+@RestApi()
 abstract class CurrentUserApi {
   factory CurrentUserApi(dio.Dio dio, {String baseUrl}) = _CurrentUserApi;
 

@@ -8,7 +8,7 @@ part of '../code_kit.dart';
 
 // part 'refresh_api.g.dart';
 
-@RestApi(baseUrl: StringConsts.apiLink)
+@RestApi()
 abstract class RefreshApi {
   factory RefreshApi(dio.Dio dio, {String baseUrl}) = _RefreshApi;
 
