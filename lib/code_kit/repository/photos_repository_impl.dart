@@ -6,12 +6,7 @@ class PhotosRepositoryImpl implements PhotosRepository {
   PhotosRepositoryImpl({required this.photosApi});
 
   @override
-  Future<PhotoModel> getPhoto({
-    required int id,
-  }) =>
-      photosApi.getPhoto(
-        id: id,
-      );
+  Future<PhotoModel> getPhoto({required int id}) => photosApi.getPhoto(id: id);
 
   @override
   Future<PhotosListModel> getPhotos(

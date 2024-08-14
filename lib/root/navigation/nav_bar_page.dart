@@ -26,24 +26,24 @@ class NavBarPage extends StatelessWidget {
             unselectedItemColor: AppColors.grey,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            items: const [
+            items: [
               BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.home,
                 ),
-                label: "Home",
+                label: context.localization.home,
               ),
               BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.photo_camera,
                 ),
-                label: "Photos",
+                label: context.localization.photos,
               ),
               BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.account_circle,
                 ),
-                label: "Profile",
+                label: context.localization.profile,
               ),
             ],
           ),

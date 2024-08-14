@@ -9,8 +9,6 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
     on<LoadPhotosEvent>(_onLoadPhotosEvent);
   }
 
-  int page = 1;
-  String name = StringConsts.emptyString;
   final PhotosRepository photosRepository;
 
   void _onLoadPhotosEvent(
@@ -22,13 +20,16 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
                 (state as _PhotosLoaded).photosListModel.totalItems ==
                     (state as _PhotosLoaded).photosListModel.member.length)) &&
         !event.isSwitch) return;
-    page = (event.isSwitch || event.name != null) ? 1 : page;
-    name = event.name ?? name;
     final currentState = state;
+    int page = 1;
+    String name = StringConsts.emptyString;
+
     List<PhotoModel> oldPhotoModels = [];
 
     if (currentState is _PhotosLoaded && !event.isSwitch) {
       oldPhotoModels = currentState.photosListModel.member;
+      page = (event.name == null) ? currentState.page : 1;
+      name = event.name ?? currentState.name;
     }
     emit(
       PhotosState.loading(
@@ -50,22 +51,24 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
         member: oldPhotoModels,
         hydraView: repositoryPhotosListModel.hydraView,
       );
-
+      page++;
       (photosListModel.totalItems > 0)
-          ? emit(
-              PhotosState.loaded(
-                photosListModel: photosListModel,
-              ),
-            )
+          ? {
+              emit(
+                PhotosState.loaded(
+                  photosListModel: photosListModel,
+                  page: page,
+                  name: name,
+                ),
+              )
+            }
           : emit(
               const PhotosState.empty(),
             );
-
-      page++;
     } on DioException {
       emit(
         const PhotosState.error(
-          errorMessage: "",
+          errorMessage: StringConsts.emptyString,
         ),
       );
     }

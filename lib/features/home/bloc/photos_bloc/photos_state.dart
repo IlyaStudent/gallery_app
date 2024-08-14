@@ -8,6 +8,8 @@ class PhotosState with _$PhotosState {
   ) = _PhotosLoading;
   const factory PhotosState.loaded({
     required PhotosListModel photosListModel,
+    required int page,
+    required String name,
   }) = _PhotosLoaded;
   const factory PhotosState.error({
     required String errorMessage,

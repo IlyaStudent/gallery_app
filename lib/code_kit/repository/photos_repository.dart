@@ -7,7 +7,5 @@ abstract class PhotosRepository {
     String name = StringConsts.emptyString,
   });
 
-  Future<PhotoModel> getPhoto({
-    required int id,
-  });
+  Future<PhotoModel> getPhoto({required int id});
 }

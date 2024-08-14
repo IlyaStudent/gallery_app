@@ -2,7 +2,7 @@ part of '../code_kit.dart';
 
 @RestApi()
 abstract class PhotosApi {
-  factory PhotosApi(dio.Dio dio, {String baseUrl}) = _PhotosApi;
+  factory PhotosApi(dio.Dio dio) = _PhotosApi;
 
   @GET(StringConsts.photosLink)
   @Headers(<String, dynamic>{
@@ -11,7 +11,8 @@ abstract class PhotosApi {
   })
   Future<PhotoListDTO> getPhotos({
     @Query(StringConsts.page) required int page,
-    @Query(StringConsts.itemsPerPage) int itemsPerPage = 20,
+    @Query(StringConsts.itemsPerPage)
+    int itemsPerPage = StringConsts.itemsPerPageInt,
     @Query(StringConsts.isNewString) required bool isNew,
     @Query(StringConsts.name) String name = StringConsts.emptyString,
   });

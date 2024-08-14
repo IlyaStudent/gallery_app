@@ -12,6 +12,7 @@ import 'package:gallery_app/code_kit/code_kit.dart';
 import 'package:gallery_app/features/on_boarding/on_boarding_part.dart';
 import 'package:gallery_app/root/navigation/app_router.dart';
 import 'package:gallery_app/ui_kit/ui_library.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 part 'screens/home_page.dart';

@@ -11,6 +11,7 @@ class StringConsts {
   static const String bearer = "Bearer";
   static const String clientId = "123";
   static const String clientSecret = "123";
+  static const int itemsPerPageInt = 20;
 
   static const String apiLink = "https://gallery.prod2.webant.ru/";
   static const String refreshLink = "/token";

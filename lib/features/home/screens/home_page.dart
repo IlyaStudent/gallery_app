@@ -30,50 +30,40 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            appBar: AppBar(
-              title: Builder(
-                builder: (context) {
-                  return CustomSearchBar(
-                    onChanged: (text) => context.readPhotosBloc
-                      ..add(
-                        LoadPhotosEvent(
-                          isNew: context.tabController.index.isEven,
-                          isSwitch: true,
-                          name: text,
-                        ),
-                      ),
-                  );
-                },
-              ),
-              bottom: CustomTabBar(
-                titles: [
-                  context.localization.newText,
-                  context.localization.popular,
-                ],
-                onTap: (index) => context.readPhotosBloc
-                  ..add(
-                    LoadPhotosEvent(
-                      isNew: index.isEven,
-                      isSwitch: true,
-                    ),
+    return DefaultTabController(
+      length: 2,
+      child: Builder(builder: (context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: CustomSearchBar(
+              onChanged: (text) => context.readPhotosBloc
+                ..add(
+                  LoadPhotosEvent(
+                    isNew: context.tabController.index.isEven,
+                    isSwitch: true,
+                    name: text,
                   ),
-              ),
+                ),
             ),
-            body: Builder(
-              builder: (context) {
-                return PhotosWidget(
-                  isNew: context.tabController.index.isEven,
-                );
-              },
+            bottom: CustomTabBar(
+              titles: [
+                context.localization.newText,
+                context.localization.popular,
+              ],
+              onTap: (index) => context.readPhotosBloc
+                ..add(
+                  LoadPhotosEvent(
+                    isNew: index.isEven,
+                    isSwitch: true,
+                  ),
+                ),
             ),
           ),
+          body: PhotosWidget(
+            isNew: context.tabController.index.isEven,
+          ),
         );
-      },
+      }),
     );
   }
 }

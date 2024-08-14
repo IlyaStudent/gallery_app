@@ -71,13 +71,13 @@ class _AuthPageState extends State<AuthPage> {
                             enabled: state is! _AuthorizationLoadingState,
                             controller: _emailController,
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          CustomPasswordField(
-                            hintText: context.localization.password,
-                            enabled: state is! _AuthorizationLoadingState,
-                            controller: _passwordController,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: CustomPasswordField(
+                              hintText: context.localization.password,
+                              enabled: state is! _AuthorizationLoadingState,
+                              controller: _passwordController,
+                            ),
                           )
                         ],
                       ),

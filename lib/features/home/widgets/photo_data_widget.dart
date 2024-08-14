@@ -15,7 +15,8 @@ class PhotoDataWidget extends StatelessWidget {
           );
         } else if (state is _PhotoDataLoaded) {
           String dateUpdate = (state.photoModel.file.dateUpdate != null)
-              ? "${DateTime.parse(state.photoModel.file.dateUpdate!).day}.${DateTime.parse(state.photoModel.file.dateUpdate!).month}.${DateTime.parse(state.photoModel.file.dateUpdate!).year}"
+              ? DateFormat('d.M.y')
+                  .format(DateTime.parse(state.photoModel.file.dateUpdate!))
               : context.localization.emptyDate;
           return Padding(
             padding: const EdgeInsets.all(16),

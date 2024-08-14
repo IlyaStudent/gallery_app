@@ -14,10 +14,20 @@ class PhotoDataPage extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Column(
           children: [
             InteractiveViewer(
-              child: Image.memory(photoData),
+              child: Container(
+                color: AppColors.greyLight,
+                width: MediaQuery.sizeOf(context).width,
+                child: Image.memory(
+                  photoData,
+                  fit: BoxFit.contain,
+                  width: MediaQuery.sizeOf(context).width,
+                  height: 400,
+                ),
+              ),
             ),
             const Expanded(
               child: SingleChildScrollView(

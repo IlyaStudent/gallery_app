@@ -9,11 +9,8 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
           child: CustomFilledButton(
-        onPressed: () {
-          FlutterSecureStorage().deleteAll();
-          context.router.replace(OnBoardingRoute());
-        },
-        text: "Log out",
+        onPressed: () {},
+        text: context.localization.logOut,
         isLoading: false,
         isDisabled: false,
       )),
