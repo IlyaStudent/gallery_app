@@ -16,4 +16,4 @@ part 'bloc/on_borading_cubit/on_boarding_state.dart';
 part 'screens/login_or_register_page.dart';
 part 'screens/on_boarding_page.dart';
 
-part 'widgets/no_connection_widget.dart';
+part '../../ui_kit/errors/custom_error_widget.dart';

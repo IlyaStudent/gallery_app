@@ -43,10 +43,11 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           tokenModel.refresh_token,
         );
         emit(const RegistrationState.regisetered());
-      } on dio.DioException catch (error) {
+      } on dio.DioException {
         emit(
           RegistrationState.checking(
-            regErrorDTO: RegistrationErrorDTO(regError: error.message),
+            regErrorDTO:
+                const RegistrationErrorDTO(regError: StringConsts.invalidReg),
             regDTO: currentState.regDTO,
           ),
         );

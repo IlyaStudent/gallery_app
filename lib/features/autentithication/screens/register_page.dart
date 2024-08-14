@@ -22,9 +22,9 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
     return BlocConsumer<RegistrationBloc, RegistrationState>(
       listener: (context, state) {
         if (state is _RegisteredState) {
-          context.router.replace(
-            const HomeRoute(),
-          );
+          context.router.replaceAll([
+            const NavBarRoute(),
+          ]);
         }
       },
       builder: (context, state) {
@@ -71,6 +71,9 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           CustomDateField(
                             hintText: context.localization.birthday,
                             errorText: (state is _RegDataChecking)
@@ -84,6 +87,9 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                 changedFieldText: text,
                               ),
                             ),
+                          ),
+                          const SizedBox(
+                            height: 20,
                           ),
                           CustomTextField(
                               hintText: context.localization.email,
@@ -99,6 +105,9 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                       changedFieldText: text,
                                     ),
                                   )),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           CustomPasswordField(
                             hintText: context.localization.password,
                             errorText: (state is _RegDataChecking)
@@ -112,6 +121,9 @@ class RegisterPage extends StatelessWidget implements AutoRouteWrapper {
                                 changedFieldText: text,
                               ),
                             ),
+                          ),
+                          const SizedBox(
+                            height: 20,
                           ),
                           CustomPasswordField(
                             hintText: context.localization.confirmPassword,

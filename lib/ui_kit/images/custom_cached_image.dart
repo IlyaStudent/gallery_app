@@ -5,7 +5,7 @@ class CustomCachedImage extends StatelessWidget {
   final bool isBig;
   const CustomCachedImage({
     super.key,
-    required this.imageUrl,
+    this.imageUrl,
     required this.isBig,
   });
 
@@ -29,12 +29,12 @@ class CustomCachedImage extends StatelessWidget {
       width: isBig ? 164 : 82,
       height: isBig ? 164 : 82,
       imageUrl: imageUrl ?? "lib/ui_kit/assets/no_image.png",
-      imageBuilder: (context, imageProvider) {
-        return _imageWidget(imageProvider);
-      },
-      placeholder: (context, url) {
-        return const CustomLoader(color: AppColors.grey);
-      },
+      imageBuilder: (context, imageProvider) => _imageWidget(
+        imageProvider,
+      ),
+      placeholder: (context, url) => const CustomLoader(
+        color: AppColors.grey,
+      ),
       errorWidget: (context, url, error) {
         return _imageWidget(
           const AssetImage('lib/ui_kit/assets/no_image.png'),

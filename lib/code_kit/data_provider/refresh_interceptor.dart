@@ -19,7 +19,7 @@ class RefreshInterceptor extends dio.Interceptor {
     dio.RequestInterceptorHandler handler,
   ) async {
     if (!await networkInfo.isConnected) {
-      handler.reject(
+      return handler.reject(
         dio.DioException(
           message: StringConsts.noInternet,
           requestOptions: options,
@@ -27,7 +27,7 @@ class RefreshInterceptor extends dio.Interceptor {
       );
     }
 
-    if (await storage.containsKey(key: StringConsts.refreshTokenKey)) {
+    if (await storage.containsKey(key: StringConsts.acccessTokenKey)) {
       final TokenModel tokenModel = await tokenSecureStorage.getToken();
       options.headers[StringConsts.authotization] =
           '${StringConsts.bearer} ${tokenModel.access_token}';
@@ -37,48 +37,22 @@ class RefreshInterceptor extends dio.Interceptor {
   }
 
   @override
-  void onResponse(
-    dio.Response response,
-    dio.ResponseInterceptorHandler handler,
-  ) {
-    return handler.next(response);
-  }
-
-  @override
   void onError(
     dio.DioException err,
     dio.ErrorInterceptorHandler handler,
   ) async {
-    if (err.requestOptions.path == StringConsts.regLink) {
-      final ErrorDTO errorDTO = ErrorDTO.fromJson(err.response?.data);
-      handler.reject(
-        dio.DioException(
-          requestOptions: err.requestOptions,
-          message: errorDTO.description,
-        ),
-      );
-      return;
-    } else if (err.requestOptions.path == StringConsts.loginLink) {
-      handler.reject(
-        dio.DioException(
-          requestOptions: err.requestOptions,
-          message: StringConsts.invalidLogin,
-        ),
-      );
+    switch (err.response?.statusCode) {
+      case 401:
+        if (await storage.containsKey(key: StringConsts.refreshTokenKey) &&
+            err.response != null) {
+          await _refreshToken();
+
+          return handler.resolve(err.response!);
+        }
+        break;
+      default:
     }
 
-    if (err.response != null) {
-      switch (err.response?.statusCode) {
-        case 401:
-          if (await storage.containsKey(key: StringConsts.refreshTokenKey) &&
-              err.response != null) {
-            await _refreshToken();
-            return handler.resolve(err.response!);
-          }
-          break;
-        default:
-      }
-    }
     return handler.next(err);
   }
 

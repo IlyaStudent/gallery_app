@@ -1,5 +1,6 @@
 library main_library;
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gallery_app/code_kit/code_kit.dart';
@@ -11,6 +12,7 @@ part 'root/gallery_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await init();
   runApp(
     const GalleryApp(),

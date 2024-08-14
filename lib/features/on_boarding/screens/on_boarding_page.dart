@@ -20,14 +20,16 @@ class OnBoardingPage extends StatelessWidget implements AutoRouteWrapper {
       listener: (context, state) {
         if (state is _OnBoardingIsAuthorized && state.isAuthorized) {
           context.router.replace(
-            const HomeRoute(),
+            const NavBarRoute(),
           );
         } else if (state is _OnBoardingIsAuthorized && !state.isAuthorized) {
           context.router.replace(
             const LoginOrRegisterRoute(),
           );
         } else if (state is _OnBoardibgNoInternet) {
-          const NoInternetWidget();
+          CustomErrorWidget(
+            text: context.localization.noInternetConnection,
+          );
         }
       },
       builder: (context, state) {

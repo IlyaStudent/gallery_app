@@ -32,10 +32,10 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
         tokenModel.access_token,
         tokenModel.refresh_token,
       );
-    } on dio.DioException catch (error) {
+    } on dio.DioException {
       emit(
-        AuthorizationState.initial(
-          erorMessage: error.message,
+        const AuthorizationState.initial(
+          erorMessage: StringConsts.invalidLogin,
         ),
       );
     }

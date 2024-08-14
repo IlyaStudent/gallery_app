@@ -29,5 +29,5 @@ class NavBarConsts {
       IconThemeData(color: AppColors.main);
   static const IconThemeData unselectedIconThemeData =
       IconThemeData(color: AppColors.grey);
-  static const sizeFromHeight = Size.fromHeight(kToolbarHeight + 100);
+  static const sizeFromHeight = Size.fromHeight(kToolbarHeight);
 }

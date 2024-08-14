@@ -55,6 +55,10 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
       style: context.theme.textTheme.labelMedium,
       decoration: InputDecoration(
         helperText: StringConsts.emptyString,
+        helperStyle: context.theme.textTheme.bodySmall?.copyWith(
+          color: AppColors.errorRed,
+          height: 0.1,
+        ),
         suffixIcon: widget.isError
             ? const Icon(
                 Icons.warning,
@@ -83,8 +87,12 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
         errorText: widget.errorText,
         errorStyle: context.theme.textTheme.bodySmall?.copyWith(
           color: AppColors.errorRed,
+          height: 0.1,
         ),
-        contentPadding: const EdgeInsets.all(12),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 1,
+          horizontal: 12,
+        ),
         border: CustomPasswordField.greyBorder,
         focusedBorder: CustomPasswordField.blackBorder,
         errorBorder: CustomPasswordField.greyBorder,
