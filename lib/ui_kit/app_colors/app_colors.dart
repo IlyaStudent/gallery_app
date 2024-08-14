@@ -11,7 +11,7 @@ class AppColors {
   static const Color gradientBegin = Color(0xffE69633);
   static const Color gradientEnd = Color(0xffCF497E);
   static const Color iconColor = Color(0xffB3B3B3);
-  static const Color shadowColor = Color(0x881D1D1D);
+  static const Color shadowColor = Color(0x0000001A);
   static const Color hintSearchColor = Color(0xff7A7A7E);
   static const Color hintDisabledSearchColor = Color(0xffCECECE);
 

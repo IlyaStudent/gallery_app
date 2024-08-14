@@ -3,9 +3,14 @@ part of '../ui_library.dart';
 class CustomSearchBar extends StatelessWidget {
   final TextEditingController controller;
   final bool isEnabled;
+  final ValueChanged<String> onChanged;
 
-  const CustomSearchBar(
-      {super.key, required this.controller, required this.isEnabled});
+  CustomSearchBar({
+    super.key,
+    TextEditingController? controller,
+    this.isEnabled = true,
+    required this.onChanged,
+  }) : controller = controller ?? TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +76,7 @@ class CustomSearchBar extends StatelessWidget {
       ),
       onChanged: (text) {
         (context as Element).markNeedsBuild();
+        onChanged(text);
       },
     );
   }

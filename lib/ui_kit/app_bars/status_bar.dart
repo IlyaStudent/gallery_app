@@ -20,6 +20,7 @@ class StatusBar extends StatelessWidget implements PreferredSizeWidget {
               child: CustomSearchBar(
                 controller: controller,
                 isEnabled: false,
+                onChanged: (text) {},
               ),
             )
           ]),

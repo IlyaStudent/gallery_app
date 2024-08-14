@@ -31,9 +31,9 @@ class _AuthPageState extends State<AuthPage> {
     return BlocConsumer<AuthorizationBloc, AuthorizationState>(
       listener: (context, state) {
         if (state is _AuthorizationAuthorizedState) {
-          context.router.replace(
-            const HomeRoute(),
-          );
+          context.router.replaceAll([
+            const NavBarRoute(),
+          ]);
         }
       },
       builder: (context, state) {
@@ -71,10 +71,13 @@ class _AuthPageState extends State<AuthPage> {
                             enabled: state is! _AuthorizationLoadingState,
                             controller: _emailController,
                           ),
-                          CustomPasswordField(
-                            hintText: context.localization.password,
-                            enabled: state is! _AuthorizationLoadingState,
-                            controller: _passwordController,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: CustomPasswordField(
+                              hintText: context.localization.password,
+                              enabled: state is! _AuthorizationLoadingState,
+                              controller: _passwordController,
+                            ),
                           )
                         ],
                       ),

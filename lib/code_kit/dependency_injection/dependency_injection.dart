@@ -22,6 +22,16 @@ Future<void> init() async {
         storage: instance(),
       ),
     )
+    ..registerLazySingleton<PhotosRepository>(
+      () => PhotosRepositoryImpl(
+        photosApi: instance(),
+      ),
+    )
+    ..registerLazySingleton<FilesRepository>(
+      () => FilesRepositoryImpl(
+        filesApi: instance(),
+      ),
+    )
 
     // api
     ..registerLazySingleton<AutentithicationApi>(
@@ -36,6 +46,16 @@ Future<void> init() async {
     )
     ..registerLazySingleton<CurrentUserApi>(
       () => CurrentUserApi(
+        instance(),
+      ),
+    )
+    ..registerLazySingleton<PhotosApi>(
+      () => PhotosApi(
+        instance(),
+      ),
+    )
+    ..registerLazySingleton<FilesApi>(
+      () => FilesApi(
         instance(),
       ),
     )
@@ -69,4 +89,6 @@ Future<void> init() async {
         networkInfo: instance(),
       ),
     );
+
+  instance<dio.Dio>().interceptors.add(instance());
 }

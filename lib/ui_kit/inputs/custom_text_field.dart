@@ -43,6 +43,10 @@ class CustomTextField extends StatelessWidget {
       style: context.theme.textTheme.labelMedium,
       decoration: InputDecoration(
         helperText: StringConsts.emptyString,
+        helperStyle: context.theme.textTheme.bodySmall?.copyWith(
+          color: AppColors.errorRed,
+          height: 0.1,
+        ),
         suffixIcon: isError
             ? const Icon(
                 Icons.warning,
@@ -66,6 +70,7 @@ class CustomTextField extends StatelessWidget {
         errorText: errorText,
         errorStyle: context.theme.textTheme.bodySmall?.copyWith(
           color: AppColors.errorRed,
+          height: 0.1,
         ),
         contentPadding: const EdgeInsets.all(12),
         border: greyBorder,

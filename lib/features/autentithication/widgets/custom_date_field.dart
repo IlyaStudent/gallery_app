@@ -53,46 +53,56 @@ class _CustomDateFieldState extends State<CustomDateField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: widget.onChanged,
-      controller: controller,
-      enabled: widget.enabled,
-      cursorColor: AppColors.black,
-      style: context.theme.textTheme.labelMedium,
-      decoration: InputDecoration(
-        helperText: StringConsts.emptyString,
-        suffixIcon: widget.isError
-            ? const Icon(
-                Icons.warning,
-                size: 24,
-                color: AppColors.errorRed,
-              )
-            : IconButton(
-                icon: const Icon(
-                  Icons.calendar_today,
-                  size: 24,
-                  color: AppColors.grey,
-                ),
-                onPressed: _chooseData,
-              ),
-        hintText: widget.hintText,
-        hintStyle: widget.enabled
-            ? context.theme.textTheme.labelMedium?.copyWith(
-                color: AppColors.grey,
-              )
-            : context.theme.textTheme.labelMedium?.copyWith(
-                color: AppColors.greyLight,
-              ),
-        errorMaxLines: 1,
-        errorText: widget.errorText,
-        errorStyle: context.theme.textTheme.bodySmall?.copyWith(
-          color: AppColors.errorRed,
+    return GestureDetector(
+      onTap: _chooseData,
+      child: AbsorbPointer(
+        child: TextField(
+          onChanged: widget.onChanged,
+          controller: controller,
+          enabled: widget.enabled,
+          cursorColor: AppColors.black,
+          style: context.theme.textTheme.labelMedium,
+          decoration: InputDecoration(
+            helperText: StringConsts.emptyString,
+            helperStyle: context.theme.textTheme.bodySmall?.copyWith(
+              color: AppColors.errorRed,
+              height: 0.1,
+            ),
+            suffixIcon: widget.isError
+                ? const Icon(
+                    Icons.warning,
+                    size: 24,
+                    color: AppColors.errorRed,
+                  )
+                : IconButton(
+                    icon: const Icon(
+                      Icons.calendar_today,
+                      size: 24,
+                      color: AppColors.grey,
+                    ),
+                    onPressed: _chooseData,
+                  ),
+            hintText: widget.hintText,
+            hintStyle: widget.enabled
+                ? context.theme.textTheme.labelMedium?.copyWith(
+                    color: AppColors.grey,
+                  )
+                : context.theme.textTheme.labelMedium?.copyWith(
+                    color: AppColors.greyLight,
+                  ),
+            errorMaxLines: 1,
+            errorText: widget.errorText,
+            errorStyle: context.theme.textTheme.bodySmall?.copyWith(
+              color: AppColors.errorRed,
+              height: 0.1,
+            ),
+            contentPadding: const EdgeInsets.all(12),
+            border: CustomPasswordField.greyBorder,
+            focusedBorder: CustomPasswordField.blackBorder,
+            errorBorder: CustomPasswordField.greyBorder,
+            disabledBorder: CustomPasswordField.greyBorder,
+          ),
         ),
-        contentPadding: const EdgeInsets.all(12),
-        border: CustomPasswordField.greyBorder,
-        focusedBorder: CustomPasswordField.blackBorder,
-        errorBorder: CustomPasswordField.greyBorder,
-        disabledBorder: CustomPasswordField.greyBorder,
       ),
     );
   }
