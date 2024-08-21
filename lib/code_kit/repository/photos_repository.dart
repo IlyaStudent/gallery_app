@@ -8,4 +8,6 @@ abstract class PhotosRepository {
   });
 
   Future<PhotoModel> getPhoto({required int id});
+
+  Future<PhotoModel> postPhoto({required PostPhotoDTO postPhotoDTO});
 }

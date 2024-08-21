@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool enabled;
   final bool isError;
+  final int minLines;
 
   const CustomTextField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.isError = false,
     this.controller,
     this.onChanged,
+    this.minLines = 1,
   });
 
   static final greyBorder = OutlineInputBorder(
@@ -39,6 +41,8 @@ class CustomTextField extends StatelessWidget {
       onChanged: onChanged,
       controller: controller,
       enabled: enabled,
+      minLines: minLines,
+      maxLines: minLines,
       cursorColor: AppColors.black,
       style: context.theme.textTheme.labelMedium,
       decoration: InputDecoration(

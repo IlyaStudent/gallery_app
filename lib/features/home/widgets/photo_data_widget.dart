@@ -17,7 +17,7 @@ class PhotoDataWidget extends StatelessWidget {
           String dateUpdate = (state.photoModel.file.dateUpdate != null)
               ? DateFormat('d.M.y')
                   .format(DateTime.parse(state.photoModel.file.dateUpdate!))
-              : context.localization.emptyDate;
+              : StringConsts.emptyDate;
           return Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -35,7 +35,7 @@ class PhotoDataWidget extends StatelessWidget {
                     children: [
                       Text(
                         state.photoModel.user?.displayName ??
-                            context.localization.userName,
+                            context.localization.username,
                         style: themeData.textTheme.labelMedium
                             ?.copyWith(color: AppColors.grey),
                       ),

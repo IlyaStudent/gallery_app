@@ -1,5 +1,7 @@
 library code_kit;
 
+import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
@@ -9,8 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gallery_app/features/autentithication/autentithication_part.dart';
+import 'package:gallery_app/features/photos/photos_part.dart';
 import 'package:gallery_app/generated/l10n.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -40,7 +44,9 @@ part 'repository/photos_repository_impl.dart';
 part 'repository/files_repository.dart';
 part 'repository/files_repository_impl.dart';
 
-part 'helpers/validation_helper.dart';
+part 'helpers/regisatrtion_valid_helper.dart';
+part 'helpers/image_picker_helper.dart';
+part 'helpers/post_photo_valid_helper.dart';
 
 part 'consts/string_consts.dart';
 
@@ -64,9 +70,14 @@ part 'models/dto/photo_list_dto_g.dart';
 part 'models/dto/hydra_view_dto.dart';
 part 'models/dto/hydra_view_dto_freezed.dart';
 part 'models/dto/hydra_view_dto_g.dart';
+part 'models/dto/post_photo_dto.dart';
+part 'models/dto/post_photo_dto_g.dart';
+part 'models/dto/post_photo_dto_freezed.dart';
 
 part 'models/user_model.dart';
 part 'models/file_model.dart';
 part 'models/photo_model.dart';
 part 'models/photos_list_model.dart';
 part 'models/hydra_view_model.dart';
+part 'models/post_photo_model.dart';
+part 'models/post_file_model.dart';

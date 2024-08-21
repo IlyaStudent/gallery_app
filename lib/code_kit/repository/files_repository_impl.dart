@@ -16,4 +16,12 @@ class FilesRepositoryImpl extends FilesRepository {
     );
     return Uint8List.fromList(response.data);
   }
+
+  @override
+  Future<FileModel> postFile({required PostFileModel postFileModel}) {
+    return filesApi.postFile(
+      originalName: postFileModel.originalName!,
+      file: postFileModel.file!,
+    );
+  }
 }

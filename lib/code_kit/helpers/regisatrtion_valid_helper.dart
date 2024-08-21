@@ -1,13 +1,13 @@
 part of '../code_kit.dart';
 
-class ValidationHelper {
+class RegistrationValidHelper {
   final RegistrationDTO regDTO;
   final RegistrationErrorDTO regErrorDTO;
 
   final String changedFieldText;
   final String changedFieldName;
 
-  ValidationHelper({
+  RegistrationValidHelper({
     required this.regDTO,
     required this.regErrorDTO,
     required this.changedFieldName,

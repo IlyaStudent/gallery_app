@@ -9,4 +9,11 @@ abstract class FilesApi {
   Future<HttpResponse<List<int>>> getPhotoByPath({
     @Path(StringConsts.path) required String path,
   });
+
+  @POST(StringConsts.filesLink)
+  @MultiPart()
+  Future<FileDTO> postFile({
+    @Part(name: StringConsts.originalName) required String originalName,
+    @Part(name: StringConsts.file) required File file,
+  });
 }

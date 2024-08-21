@@ -21,4 +21,11 @@ abstract class PhotosApi {
   Future<PhotoDTO> getPhoto({
     @Path(StringConsts.id) required int id,
   });
+
+  @POST(StringConsts.photosLink)
+  @Headers(<String, dynamic>{
+    StringConsts.accept: StringConsts.applicationIdJson,
+    StringConsts.contentType: StringConsts.applicationIdJson,
+  })
+  Future<PhotoDTO> postPhoto({@Body() required PostPhotoDTO postPhotoDTO});
 }
