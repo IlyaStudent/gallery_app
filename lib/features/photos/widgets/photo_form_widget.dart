@@ -104,7 +104,7 @@ class PhotoFormWidget extends StatelessWidget {
               onPressed: () => context.readPostPhotoBloc.add(
                 const _PhotoPostPost(),
               ),
-              text: "Add",
+              text: context.localization.add,
               isLoading: isLoading,
               isDisabled: !isValid,
             ),

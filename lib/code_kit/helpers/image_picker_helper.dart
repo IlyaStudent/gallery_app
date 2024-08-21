@@ -1,11 +1,9 @@
 part of '../code_kit.dart';
 
 class ImagePickerHelper {
-  final ImagePicker imagePicker = ImagePicker();
-
-  Future<Map<String, File>?> pickImageFromGallery() async {
+  static Future<Map<String, File>?> pickImageFromGallery() async {
     final XFile? pickedFile =
-        await imagePicker.pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     return (pickedFile != null)
         ? {

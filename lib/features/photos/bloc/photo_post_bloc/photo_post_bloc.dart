@@ -87,7 +87,7 @@ class PhotoPostBloc extends Bloc<PhotoPostEvent, PhotoPostState> {
   ) async {
     final currentState = state;
     final Map<String, File>? photoData =
-        await ImagePickerHelper().pickImageFromGallery();
+        await ImagePickerHelper.pickImageFromGallery();
     if (currentState is! _PhotoPostStateVerifying || photoData == null) {
       return;
     }

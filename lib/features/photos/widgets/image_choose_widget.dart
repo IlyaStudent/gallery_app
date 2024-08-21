@@ -20,7 +20,7 @@ class ImageChooseWidget extends StatelessWidget {
         child: Image.memory(
           imageData ?? Uint8List(0),
           fit: BoxFit.contain,
-          errorBuilder: (context, error, stackTrace) => Image.asset(
+          errorBuilder: (_, __, ___) => Image.asset(
             "lib/ui_kit/assets/no_image.png",
             fit: BoxFit.contain,
           ),
