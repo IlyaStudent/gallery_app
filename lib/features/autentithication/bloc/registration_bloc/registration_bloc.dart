@@ -61,7 +61,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   ) async {
     final currentState = state;
     if (currentState is _RegDataChecking) {
-      final ValidationHelper validationHelper = ValidationHelper(
+      final RegistrationValidHelper validationHelper = RegistrationValidHelper(
         regDTO: currentState.regDTO,
         regErrorDTO: currentState.regErrorDTO,
         changedFieldName: event.changedFieldName,

@@ -9,13 +9,18 @@ class PhotosRepositoryImpl implements PhotosRepository {
   Future<PhotoModel> getPhoto({required int id}) => photosApi.getPhoto(id: id);
 
   @override
-  Future<PhotosListModel> getPhotos(
-          {required int page,
-          required bool isNew,
-          String name = StringConsts.emptyString}) =>
+  Future<PhotosListModel> getPhotos({
+    required int page,
+    required bool isNew,
+    String name = StringConsts.emptyString,
+  }) =>
       photosApi.getPhotos(
         page: page,
         isNew: isNew,
         name: name,
       );
+
+  @override
+  Future<PhotoModel> postPhoto({required PostPhotoDTO postPhotoDTO}) =>
+      photosApi.postPhoto(postPhotoDTO: postPhotoDTO);
 }

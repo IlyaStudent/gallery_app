@@ -5,4 +5,6 @@ extension ContextExtensions on BuildContext {
   S get localization => S.of(this);
   TabsRouter get autoTabsRouter => AutoTabsRouter.of(this);
   TabController get tabController => DefaultTabController.of(this);
+  Size get deviceSize => MediaQuery.sizeOf(this);
+  ScaffoldMessengerState get scaffoldMessanger => ScaffoldMessenger.of(this);
 }
