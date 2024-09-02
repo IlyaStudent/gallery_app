@@ -26,7 +26,7 @@ class PhotoCubit extends Cubit<PhotoState> {
       ),
     );
     try {
-      final Uint8List photoData = await filesRepository.getPhotoByPath(
+      final Uint8List photoData = await filesRepository.getFileByPath(
         path: path,
       );
       loadedPhotos[path] = photoData;

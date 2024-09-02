@@ -8,6 +8,7 @@ class UserDTO extends UserModel with _$UserDTO {
     String? displayName,
     List<String>? roles,
     int? id,
+    UserProfilePhotoDTO? userProfilePhoto,
     String? dateCreate,
     String? dateUpdate,
   }) = _UserDTO;

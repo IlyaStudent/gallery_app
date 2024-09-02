@@ -6,7 +6,7 @@ abstract class FilesApi {
 
   @GET(StringConsts.getFileLink)
   @DioResponseType(dio.ResponseType.bytes)
-  Future<HttpResponse<List<int>>> getPhotoByPath({
+  Future<HttpResponse<List<int>>> getFileByPath({
     @Path(StringConsts.path) required String path,
   });
 
@@ -15,5 +15,10 @@ abstract class FilesApi {
   Future<FileDTO> postFile({
     @Part(name: StringConsts.originalName) required String originalName,
     @Part(name: StringConsts.file) required File file,
+  });
+
+  @GET(StringConsts.idFileLink)
+  Future<FileDTO> getFileById({
+    @Path(StringConsts.id) required int id,
   });
 }

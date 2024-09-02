@@ -108,3 +108,5 @@ app.*.map.json
 /lib/features/photos/bloc/photo_post_bloc/photo_post_bloc_freezed.dart
 /lib/features/photos/models/dto/post_photo_error_dto_freezed.dart
 /lib/features/photos/models/dto/post_photo_error_dto_g.dart
+/lib/code_kit/models/dto/user_profile_photo_dto_freezed.dart
+/lib/code_kit/models/dto/user_profile_photo_dto_g.dart

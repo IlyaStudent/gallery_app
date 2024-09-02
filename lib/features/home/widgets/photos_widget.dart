@@ -1,12 +1,20 @@
 part of '../home_part.dart';
 
 class PhotosWidget extends StatelessWidget {
-  final bool isNew;
+  final bool? isNew;
+  final bool? isPopular;
+  final int? userId;
+  final int crossAxisCount;
+  final double axisSpacing;
   final ScrollController scrollController = ScrollController();
 
   PhotosWidget({
     super.key,
-    required this.isNew,
+    this.isNew,
+    this.isPopular,
+    this.userId,
+    this.crossAxisCount = 2,
+    this.axisSpacing = 15,
   });
 
   @override
@@ -17,7 +25,12 @@ class PhotosWidget extends StatelessWidget {
             scrollController.position.maxScrollExtent) {
           if (scrollController.position.pixels != 0) {
             context.readPhotosBloc.add(
-              LoadPhotosEvent(isNew: isNew, isSwitch: false),
+              LoadPhotosEvent(
+                isNew: isNew,
+                isSwitch: false,
+                isPopular: isPopular,
+                userId: userId,
+              ),
             );
           }
         }
@@ -49,12 +62,12 @@ class PhotosWidget extends StatelessWidget {
             child: GridView.builder(
               padding: const EdgeInsets.all(15),
               controller: scrollController,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 15,
-                crossAxisSpacing: 15,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                mainAxisSpacing: axisSpacing,
+                crossAxisSpacing: axisSpacing,
               ),
-              itemCount: photos.length + (isLoading ? 2 : 0),
+              itemCount: photos.length + (isLoading ? crossAxisCount : 0),
               itemBuilder: (context, index) {
                 if (index < photos.length) {
                   return PhotoWidget(

@@ -7,6 +7,7 @@ class UserModel {
     this.displayName,
     this.roles,
     this.id,
+    this.userProfilePhoto,
     this.dateCreate,
     this.dateUpdate,
   });
@@ -16,6 +17,7 @@ class UserModel {
   final String? displayName;
   final List<String>? roles;
   final int? id;
+  final UserProfilePhotoModel? userProfilePhoto;
   final String? dateCreate;
   final String? dateUpdate;
 }
