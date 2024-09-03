@@ -1,19 +1,12 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gallery_app/code_kit/code_kit.dart';
-import 'package:gallery_app/features/autentithication/autentithication_part.dart';
 import 'package:gallery_app/root/navigation/app_router.dart';
 import 'package:gallery_app/ui_kit/ui_library.dart';
-import 'package:image_picker/image_picker.dart';
 
 part 'models/post_photo_error_model.dart';
 

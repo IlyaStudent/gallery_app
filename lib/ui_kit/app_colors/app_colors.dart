@@ -5,7 +5,9 @@ class AppColors {
   static const Color grey = Color(0xffBCBCBC);
   static const Color greyLight = Color(0xffEEEEEF);
   static const Color white = Color(0xffFFFFFF);
-  static const Color main = Color(0xffCF497E);
+  static const Color main = Color.fromARGB(255, 207, 73, 127);
+  static final Color mainWithOpacity =
+      const Color.fromARGB(255, 207, 73, 127).withOpacity(0.3);
   static const Color errorRed = Color(0xffED3E3E);
   static const Color blue = Color(0xff409EFF);
   static const Color gradientBegin = Color(0xffE69633);

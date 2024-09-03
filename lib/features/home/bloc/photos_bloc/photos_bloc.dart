@@ -41,6 +41,8 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
           await photosRepository.getPhotos(
         page: page,
         isNew: event.isNew,
+        isPopular: event.isPopular,
+        userId: event.userId,
         name: name,
       );
 

@@ -3,6 +3,7 @@ part of "../code_kit.dart";
 class StringConsts {
   static const String emptyString = "";
   static const String emptyDate = "01.01.2001";
+  static const String dateTimeParse = "d.M.y";
 
   static const String regEmailValidate = r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
   static const String regDateValidate = r"\d{1,2}\.\d{1,2}\.\d{4}";
@@ -12,7 +13,7 @@ class StringConsts {
   static const String bearer = "Bearer";
   static const String clientId = "123";
   static const String clientSecret = "123";
-  static const int itemsPerPageInt = 20;
+  static const int itemsPerPageInt = 24;
 
   static const String apiLink = "https://gallery.prod2.webant.ru";
   static const String refreshLink = "/token";
@@ -21,6 +22,7 @@ class StringConsts {
   static const String currentUserLink = "/current";
   static const String photosLink = "/photos";
   static const String filesLink = "/files";
+  static const String idFileLink = "/files/{id}";
   static const String idPhotoLink = "/photos/{id}";
   static const String getFileLink = "/get_file/{path}";
   static const String acccessTokenKey = "access_token";
@@ -54,6 +56,11 @@ class StringConsts {
   static const String user = "user";
   static const String description = "description";
   static const String popular = "popular";
+  static const String userProfilePhoto = "userProfilePhoto";
+  static const String orderId = "order[id]";
+  static const String userId = "user[id]";
+  static const String asc = "asc";
+  static const String desc = "desc";
 
   static const String noInternet = "No internet connection";
   static const String invalidLogin = "Incorrect login or password";

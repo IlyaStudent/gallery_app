@@ -3,7 +3,9 @@ part of '../../home_part.dart';
 @freezed
 class PhotosEvent with _$PhotosEvent {
   const factory PhotosEvent.loadPhotos({
-    required bool isNew,
+    bool? isNew,
+    bool? isPopular,
+    int? userId,
     required bool isSwitch,
     String? name,
   }) = LoadPhotosEvent;

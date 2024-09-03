@@ -8,10 +8,10 @@ class FilesRepositoryImpl extends FilesRepository {
   });
 
   @override
-  Future<Uint8List> getPhotoByPath({
+  Future<Uint8List> getFileByPath({
     required String path,
   }) async {
-    final response = await filesApi.getPhotoByPath(
+    final response = await filesApi.getFileByPath(
       path: path,
     );
     return Uint8List.fromList(response.data);
@@ -24,4 +24,8 @@ class FilesRepositoryImpl extends FilesRepository {
       file: postFileModel.file!,
     );
   }
+
+  @override
+  Future<FileModel> getFileById({required int id}) =>
+      filesApi.getFileById(id: id);
 }

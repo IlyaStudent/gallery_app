@@ -13,8 +13,11 @@ abstract class PhotosApi {
     @Query(StringConsts.page) required int page,
     @Query(StringConsts.itemsPerPage)
     int itemsPerPage = StringConsts.itemsPerPageInt,
-    @Query(StringConsts.isNewString) required bool isNew,
+    @Query(StringConsts.isNewString) bool? isNew,
+    @Query(StringConsts.popular) bool? isPopular,
     @Query(StringConsts.name) String name = StringConsts.emptyString,
+    @Query(StringConsts.orderId) String orderId = StringConsts.desc,
+    @Query(StringConsts.userId) int? userId,
   });
 
   @GET(StringConsts.idPhotoLink)

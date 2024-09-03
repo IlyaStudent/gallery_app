@@ -11,12 +11,16 @@ class PhotosRepositoryImpl implements PhotosRepository {
   @override
   Future<PhotosListModel> getPhotos({
     required int page,
-    required bool isNew,
+    bool? isNew,
+    bool? isPopular,
+    int? userId,
     String name = StringConsts.emptyString,
   }) =>
       photosApi.getPhotos(
         page: page,
         isNew: isNew,
+        isPopular: isPopular,
+        userId: userId,
         name: name,
       );
 
