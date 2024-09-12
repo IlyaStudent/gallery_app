@@ -35,7 +35,9 @@ class ProfileScreen extends StatelessWidget implements AutoRouteWrapper {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => context.router.push(
+              const SettingsRoute(),
+            ),
             icon: const Icon(
               Icons.settings,
               color: AppColors.grey,

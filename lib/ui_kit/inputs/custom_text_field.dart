@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final bool enabled;
   final bool isError;
   final int minLines;
+  final String? initialValue;
 
   const CustomTextField({
     super.key,
@@ -20,6 +21,7 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.minLines = 1,
+    this.initialValue,
   });
 
   static final greyBorder = OutlineInputBorder(
@@ -37,7 +39,8 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      initialValue: initialValue,
       onChanged: onChanged,
       controller: controller,
       enabled: enabled,

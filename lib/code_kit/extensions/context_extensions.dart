@@ -7,4 +7,5 @@ extension ContextExtensions on BuildContext {
   TabController get tabController => DefaultTabController.of(this);
   Size get deviceSize => MediaQuery.sizeOf(this);
   ScaffoldMessengerState get scaffoldMessanger => ScaffoldMessenger.of(this);
+  NavigatorState get navigator => Navigator.of(this);
 }

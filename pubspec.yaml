@@ -80,6 +80,7 @@ flutter:
     - lib/ui_kit/assets/no_image.png
     - lib/ui_kit/assets/logo.png
     - lib/ui_kit/assets/error_logo.png
+    - lib/ui_kit/assets/icon_stroke.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

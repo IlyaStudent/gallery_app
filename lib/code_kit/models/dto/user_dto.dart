@@ -11,6 +11,8 @@ class UserDTO extends UserModel with _$UserDTO {
     UserProfilePhotoDTO? userProfilePhoto,
     String? dateCreate,
     String? dateUpdate,
+    String? phone,
+    String? deleted,
   }) = _UserDTO;
 
   factory UserDTO.fromJson(Map<String, dynamic> json) =>

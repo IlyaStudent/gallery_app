@@ -15,10 +15,11 @@ Future<void> init() async {
     ..registerLazySingleton<UserRepository>(
       () => UserRepositoryImpl(
         currentUserApi: instance(),
+        usersApi: instance(),
       ),
     )
-    ..registerLazySingleton<TokenSecureStorage>(
-      () => TokenSecureStorageImpl(
+    ..registerLazySingleton<SecureStorage>(
+      () => SecureStorageImpl(
         storage: instance(),
       ),
     )
@@ -56,6 +57,11 @@ Future<void> init() async {
     )
     ..registerLazySingleton<FilesApi>(
       () => FilesApi(
+        instance(),
+      ),
+    )
+    ..registerLazySingleton<UsersApi>(
+      () => UsersApi(
         instance(),
       ),
     )

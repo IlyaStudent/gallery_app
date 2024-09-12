@@ -2,7 +2,7 @@ part of '../../autentithication_part.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   final AuthentithicationRepository authentithicationRepository;
-  final TokenSecureStorage tokenSecureStorage;
+  final SecureStorage tokenSecureStorage;
   final RegistrationDTO registrationDTO;
   final RegistrationErrorDTO registrationErrorDTO;
 
@@ -39,8 +39,9 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           loginDTO,
         );
         await tokenSecureStorage.writeToken(
-          tokenModel.access_token,
-          tokenModel.refresh_token,
+          accessToken: tokenModel.access_token,
+          refreshToken: tokenModel.refresh_token,
+          plainPassword: loginDTO.password,
         );
         emit(const RegistrationState.regisetered());
       } on dio.DioException {

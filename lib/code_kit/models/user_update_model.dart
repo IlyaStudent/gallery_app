@@ -1,7 +1,7 @@
 part of '../code_kit.dart';
 
-class UserModel {
-  const UserModel({
+class UserUpdateModel {
+  const UserUpdateModel({
     this.email,
     this.birthday,
     this.displayName,
@@ -19,7 +19,7 @@ class UserModel {
   final String? displayName;
   final List<String>? roles;
   final int? id;
-  final UserProfilePhotoModel? userProfilePhoto;
+  final String? userProfilePhoto;
   final String? dateCreate;
   final String? dateUpdate;
   final String? phone;

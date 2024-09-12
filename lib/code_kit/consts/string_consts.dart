@@ -9,6 +9,7 @@ class StringConsts {
   static const String regDateValidate = r"\d{1,2}\.\d{1,2}\.\d{4}";
   static const String logoImage = "lib/ui_kit/assets/logo.png";
   static const String errorLogoImage = "lib/ui_kit/assets/error_logo.png";
+  static const String strokeImage = "lib/ui_kit/assets/icon_stroke.png";
 
   static const String bearer = "Bearer";
   static const String clientId = "123";
@@ -23,6 +24,7 @@ class StringConsts {
   static const String photosLink = "/photos";
   static const String filesLink = "/files";
   static const String idFileLink = "/files/{id}";
+  static const String idUsersLink = "/users/{id}";
   static const String idPhotoLink = "/photos/{id}";
   static const String getFileLink = "/get_file/{path}";
   static const String acccessTokenKey = "access_token";
@@ -69,9 +71,14 @@ class StringConsts {
   static const String displayName = "displayName";
   static const String birthday = "birthday";
   static const String email = "email";
+  static const String phone = "phone";
   static const String plainPassword = "plainPassword";
+  static const String oldPassword = "oldPassword";
+  static const String newPassword = "newPassword";
   static const String confirmPassword = "confirmPassword";
   static const String dataValid = "dataValid";
+  static const String isVerified = "isVerified";
+  static const String isValid = "isValid";
 
   static const String displayNameError =
       "Имя пользователя должно быть от 4 до 30 символов";
@@ -87,6 +94,9 @@ class StringConsts {
   static const String onBoardingPath = "/";
   static const String logOrRegPath = "/logOrReg";
   static const String photoDataPath = "/photoData";
+  static const String settingsPath = "/settings";
+  static const String passwordResetPath = "/passwordReset";
+  static const String successScreenPath = "/success";
   static const String homePath = "home";
   static const String photosPath = "photos";
   static const String profilePath = "profile";

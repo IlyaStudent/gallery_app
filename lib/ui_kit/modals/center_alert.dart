@@ -1,41 +1,55 @@
 part of '../ui_library.dart';
 
 class CenterAlertDialog {
+  final VoidCallback? onConfirm;
+  final VoidCallback? onCancel;
+
   final String title;
   final String text;
+  final String btnText;
 
-  CenterAlertDialog({required this.title, required this.text});
+  CenterAlertDialog({
+    required this.title,
+    required this.text,
+    required this.btnText,
+    this.onConfirm,
+    this.onCancel,
+  });
 
   void showCenterAlertDialog(BuildContext context) {
-    showCupertinoModalPopup<void>(
+    showDialog<void>(
       context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
         title: Text(
           title,
+          style: context.theme.textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.w500,
+          ),
         ),
         content: Text(
           text,
+          style: context.theme.textTheme.labelMedium,
         ),
-        actions: <CupertinoDialogAction>[
-          CupertinoDialogAction(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              'Exit',
-              style: context.theme.textTheme.labelMedium?.copyWith(
-                color: AppColors.blue,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: GestureDetector(
+              onTap: onConfirm,
+              child: Text(
+                btnText,
+                style: context.theme.textTheme.displayLarge?.copyWith(
+                  color: AppColors.main,
+                ),
               ),
             ),
           ),
-          CupertinoDialogAction(
-            onPressed: () {
-              Navigator.pop(context);
-            },
+          GestureDetector(
+            onTap: onCancel,
             child: Text(
-              'Confirm',
-              style: context.theme.textTheme.labelMedium?.copyWith(
-                color: AppColors.blue,
+              context.localization.cancel,
+              style: context.theme.textTheme.displayLarge?.copyWith(
+                color: AppColors.main,
               ),
             ),
           ),

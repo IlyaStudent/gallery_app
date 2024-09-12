@@ -1,9 +1,9 @@
 part of '../code_kit.dart';
 
-class TokenSecureStorageImpl implements TokenSecureStorage {
+class SecureStorageImpl implements SecureStorage {
   final FlutterSecureStorage storage;
 
-  TokenSecureStorageImpl({required this.storage});
+  SecureStorageImpl({required this.storage});
 
   @override
   Future<TokenModel> getToken() async {
@@ -19,7 +19,11 @@ class TokenSecureStorageImpl implements TokenSecureStorage {
   }
 
   @override
-  Future<void> writeToken(String accessToken, String refreshToken) async {
+  Future<void> writeToken({
+    String? accessToken,
+    String? refreshToken,
+    String? plainPassword,
+  }) async {
     await storage.write(
       key: StringConsts.acccessTokenKey,
       value: accessToken,
@@ -28,5 +32,17 @@ class TokenSecureStorageImpl implements TokenSecureStorage {
       key: StringConsts.refreshTokenKey,
       value: refreshToken,
     );
+    await storage.write(
+      key: StringConsts.plainPassword,
+      value: plainPassword,
+    );
   }
+
+  @override
+  Future<String?> getPassword() =>
+      storage.read(key: StringConsts.plainPassword);
+
+  @override
+  Future<void> writePassword(String plainPassword) async => await storage.write(
+      key: StringConsts.plainPassword, value: plainPassword);
 }

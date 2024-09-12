@@ -6,6 +6,7 @@ class CustomDateField extends StatefulWidget {
   final String hintText;
   final bool enabled;
   final bool isError;
+  final String? initialValue;
 
   const CustomDateField({
     super.key,
@@ -14,6 +15,7 @@ class CustomDateField extends StatefulWidget {
     this.enabled = true,
     this.isError = false,
     this.onChanged,
+    this.initialValue,
   });
 
   static final greyBorder = OutlineInputBorder(
@@ -53,6 +55,9 @@ class _CustomDateFieldState extends State<CustomDateField> {
 
   @override
   Widget build(BuildContext context) {
+    controller.text = controller.text.isEmpty
+        ? widget.initialValue ?? StringConsts.emptyString
+        : controller.text;
     return GestureDetector(
       onTap: _chooseData,
       child: AbsorbPointer(

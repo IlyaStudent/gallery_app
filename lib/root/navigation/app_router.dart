@@ -6,8 +6,10 @@ import 'package:gallery_app/code_kit/code_kit.dart';
 import 'package:gallery_app/features/autentithication/autentithication_part.dart';
 import 'package:gallery_app/features/home/home_part.dart';
 import 'package:gallery_app/features/on_boarding/on_boarding_part.dart';
+import 'package:gallery_app/features/password_reset/password_reset_part.dart';
 import 'package:gallery_app/features/photos/photos_part.dart';
 import 'package:gallery_app/features/profile/profile_part.dart';
+import 'package:gallery_app/features/settings/settings_part.dart';
 import 'package:gallery_app/root/navigation/nav_bar_page.dart';
 
 part 'app_router.gr.dart';
@@ -36,6 +38,18 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: PhotoDataRoute.page,
           path: StringConsts.photoDataPath,
+        ),
+        AutoRoute(
+          page: SettingsRoute.page,
+          path: StringConsts.settingsPath,
+        ),
+        AutoRoute(
+          page: PasswordResetRoute.page,
+          path: StringConsts.passwordResetPath,
+        ),
+        AutoRoute(
+          page: SuccessRoute.page,
+          path: StringConsts.successScreenPath,
         ),
         AutoRoute(
           page: NavBarRoute.page,

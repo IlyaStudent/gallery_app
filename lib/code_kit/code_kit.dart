@@ -10,7 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gallery_app/features/autentithication/autentithication_part.dart';
+import 'package:gallery_app/features/password_reset/password_reset_part.dart';
+import 'package:gallery_app/features/settings/settings_part.dart';
 import 'package:gallery_app/generated/l10n.dart';
+import 'package:gallery_app/root/navigation/app_router.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -32,9 +35,11 @@ part 'data_provider/photos_api.dart';
 part 'data_provider/photos_api_g.dart';
 part 'data_provider/files_api.dart';
 part 'data_provider/files_api_g.dart';
+part 'data_provider/users_api.dart';
+part 'data_provider/users_api_g.dart';
 
-part 'repository/token_secure_storage.dart';
-part 'repository/token_secure_storage_impl.dart';
+part 'repository/secure_storage.dart';
+part 'repository/secure_storage_impl.dart';
 part 'repository/user_repository.dart';
 part 'repository/user_repository_impl.dart';
 part 'repository/photos_repository.dart';
@@ -45,10 +50,12 @@ part 'repository/files_repository_impl.dart';
 part 'helpers/regisatrtion_valid_helper.dart';
 part 'helpers/image_picker_helper.dart';
 part 'helpers/post_photo_valid_helper.dart';
+part 'helpers/settings_validation_helper.dart';
+part 'helpers/reset_password_helper.dart';
 
 part 'consts/string_consts.dart';
 
-part 'extensions/content_extensions.dart';
+part 'extensions/context_extensions.dart';
 
 part 'models/dto/refresh_dto.dart';
 part 'models/dto/refresh_dto_freezed.dart';
@@ -74,6 +81,12 @@ part 'models/dto/post_photo_dto_freezed.dart';
 part 'models/dto/user_profile_photo_dto.dart';
 part 'models/dto/user_profile_photo_dto_g.dart';
 part 'models/dto/user_profile_photo_dto_freezed.dart';
+part 'models/dto/account_settings_dto.dart';
+part 'models/dto/account_settings_dto_g.dart';
+part 'models/dto/account_settings_dto_freezed.dart';
+part 'models/dto/user_update_dto.dart';
+part 'models/dto/user_update_dto_freezed.dart';
+part 'models/dto/user_update_dto_g.dart';
 
 part 'models/user_model.dart';
 part 'models/file_model.dart';
@@ -83,3 +96,5 @@ part 'models/hydra_view_model.dart';
 part 'models/post_photo_model.dart';
 part 'models/post_file_model.dart';
 part 'models/user_profile_photo_model.dart';
+part 'models/account_settings_model.dart';
+part 'models/user_update_model.dart';

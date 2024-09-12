@@ -32,7 +32,8 @@ class CustomFilledButton extends StatelessWidget {
                         : AppColors.black,
               ),
       ),
-      child: Padding(
+      child: Container(
+        height: 40,
         padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 42),
         child: isLoading
             ? const CustomLoader(color: AppColors.white)

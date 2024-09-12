@@ -2,7 +2,7 @@ part of '../code_kit.dart';
 
 class RefreshInterceptor extends dio.Interceptor {
   final RefreshApi refreshApi;
-  final TokenSecureStorage tokenSecureStorage;
+  final SecureStorage tokenSecureStorage;
   final NetworkInfo networkInfo;
   final FlutterSecureStorage storage;
 
@@ -65,8 +65,8 @@ class RefreshInterceptor extends dio.Interceptor {
     try {
       final TokenDTO tokenModel = await refreshApi.refresh(refreshDTO);
       tokenSecureStorage.writeToken(
-        tokenModel.access_token,
-        tokenModel.refresh_token,
+        accessToken: tokenModel.access_token,
+        refreshToken: tokenModel.refresh_token,
       );
     } catch (e) {
       await storage.deleteAll();

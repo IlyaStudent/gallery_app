@@ -11,29 +11,30 @@ class UserDataWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.greyLight,
-              ),
-              borderRadius: BorderRadius.circular(80.0),
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: AppColors.greyLight,
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(80.0),
-              child: (userPhoto != null)
-                  ? Image.memory(
-                      userPhoto!,
-                      height: 80,
-                      width: 80,
-                      fit: BoxFit.cover,
-                    )
-                  : Image.asset(
-                      StringConsts.logoImage,
-                      height: 80,
-                      width: 80,
-                      fit: BoxFit.cover,
-                    ),
-            )),
+            borderRadius: BorderRadius.circular(80.0),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(80.0),
+            child: (userPhoto != null)
+                ? Image.memory(
+                    userPhoto!,
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    StringConsts.logoImage,
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.cover,
+                  ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 20),
           child: Column(

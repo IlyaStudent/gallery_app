@@ -12,7 +12,10 @@ class PhotoWidget extends StatelessWidget {
     return BlocBuilder<PhotoCubit, PhotoState>(
       builder: (context, state) {
         Uint8List? photoData;
-        context.readPhotoCubit.loadPhoto(photoModel.file.path);
+        if (!context.readPhotoCubit.isClosed) {
+          context.readPhotoCubit.loadPhoto(photoModel.file.path);
+        }
+
         if (state is _PhotoError) {
           return const Icon(Icons.error);
         } else if (state is _PhotoLoaded) {

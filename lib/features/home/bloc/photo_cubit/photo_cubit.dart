@@ -13,7 +13,8 @@ class PhotoCubit extends Cubit<PhotoState> {
   ) async {
     if (state is _PhotoLoading ||
         state is _PhotoLoaded &&
-            (state as _PhotoLoaded).loadedPhotos.containsKey(path)) return;
+            (state as _PhotoLoaded).loadedPhotos.containsKey(path) ||
+        super.isClosed) return;
     final currentState = state;
 
     Map<String, dynamic> loadedPhotos = {};
@@ -36,9 +37,13 @@ class PhotoCubit extends Cubit<PhotoState> {
         ),
       );
     } catch (e) {
-      emit(
-        const PhotoState.error(),
-      );
+      try {
+        emit(
+          const PhotoState.error(),
+        );
+      } catch (e) {
+        super.close();
+      }
     }
   }
 }

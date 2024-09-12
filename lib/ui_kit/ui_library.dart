@@ -1,8 +1,10 @@
 library ui_library;
 
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gallery_app/code_kit/code_kit.dart';
 part 'app_colors/app_colors.dart';
 part 'buttons/custom_filled_button.dart';

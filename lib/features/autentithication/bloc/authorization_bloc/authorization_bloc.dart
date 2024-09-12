@@ -12,7 +12,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   final FlutterSecureStorage storage;
 
   final AuthentithicationRepository authentithicationRepository;
-  final TokenSecureStorage tokenSecureStorage;
+  final SecureStorage tokenSecureStorage;
 
   void _onAuthorizeEvent(
     AuthorizationEvent event,
@@ -29,8 +29,9 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
         const AuthorizationState.authotized(),
       );
       tokenSecureStorage.writeToken(
-        tokenModel.access_token,
-        tokenModel.refresh_token,
+        accessToken: tokenModel.access_token,
+        refreshToken: tokenModel.refresh_token,
+        plainPassword: event.loginDTO.password,
       );
     } on dio.DioException {
       emit(
